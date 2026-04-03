@@ -43,6 +43,7 @@
   body.region-factorde { --accent: #f59e0b; } /* Amber */
   body.region-factordk { --accent: #8b5cf6; } /* Purple */
   body.region-factorse { --accent: #d946ef; } /* Fuchsia */
+  body.region-sahwrap { --accent: #14b8a6; }  /* Teal for KIRO Tab */
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -174,31 +175,33 @@
   
   .copyBtn { position: absolute; top: 20px; right: 24px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
   .copyBtn:hover { background: var(--accent); border-color: var(--accent); color: #ffffff; }
-  .copyBtn.copied { background: #10b981; color: #fff; border-color: #10b981; }
   
   .searchBar { display: flex; align-items: center; gap: 12px; padding: 24px 36px; background: var(--bg-main); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
   .searchBar input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; font-size: 15px; font-family: inherit; background: var(--bg-card); color: var(--text-main); outline: none; transition: all 0.2s ease; }
   .searchBar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--bg-hover); }
   .noResults { text-align: center; color: var(--text-muted); padding: 80px; font-size: 15px; display: none; font-weight: 500; }
 
-  /* Embedded KIRO Tool CSS */
-  .sahwrap-wrapper { font-family: 'Quicksand', sans-serif; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-  .sahwrap-title { color: var(--text-muted); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  /* KIRO Tool CSS */
+  .sahwrap-wrapper { max-width: 800px; margin: 0 auto; font-family: 'Quicksand', sans-serif; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+  .sahwrap-title { color: var(--accent); font-size: 22px; font-weight: 700; margin-bottom: 24px; text-align: center; letter-spacing: 0.5px; }
+  .sahwrap-label { color: var(--text-muted); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: block; }
   
-  .sahwrap-textarea { width: 100%; box-sizing: border-box; background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; padding: 16px; resize: none; font-family: 'Quicksand', sans-serif; font-weight: 500; font-size: 14px; color: var(--text-main); outline: none; transition: border-color 0.2s; }
+  /* Increased textarea height */
+  .sahwrap-textarea { width: 100%; box-sizing: border-box; background: var(--bg-main); border: 1px solid var(--border); border-radius: 12px; padding: 16px; height: 280px; resize: none; font-family: 'Quicksand', sans-serif; font-weight: 500; font-size: 14px; color: var(--text-main); outline: none; margin-bottom: 20px; transition: border-color 0.2s; }
   .sahwrap-textarea:focus { border-color: var(--accent); background: var(--bg-card); }
   
-  .sahwrap-btn-action { background: var(--accent); color: white; border: none; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; font-family: 'Quicksand', sans-serif; display: flex; align-items: center; justify-content: center; }
-  .sahwrap-btn-action:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
-  .sahwrap-btn-action:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; transform: none; }
+  .sahwrap-btn-action { width: 100%; background: var(--accent); color: white; border: none; border-radius: 12px; padding: 14px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; font-family: 'Quicksand', sans-serif; margin-bottom: 20px; }
+  .sahwrap-btn-action:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2); opacity: 0.9; }
+  .sahwrap-btn-action:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; transform: none; box-shadow: none; }
   
-  .sahwrap-output { background: var(--bg-main); border: 1px solid var(--accent); border-radius: 8px; padding: 16px; text-align: left; font-size: 14px; color: var(--text-main); white-space: pre-wrap; display: none; line-height: 1.6; font-weight: 500; }
+  /* Increased output box height */
+  .sahwrap-output { background: var(--bg-main); border: 1px solid var(--accent); border-radius: 12px; padding: 20px; text-align: left; font-size: 14.5px; color: var(--text-main); white-space: pre-wrap; display: none; margin-bottom: 20px; line-height: 1.6; font-weight: 500; height: 280px; overflow-y: auto; }
   
-  .sahwrap-btn-copy { background: transparent; color: var(--accent); border: 2px solid var(--accent); font-weight: 700; font-size: 14px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; align-items: center; justify-content: center; }
+  .sahwrap-btn-copy { width: 100%; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 12px; padding: 14px; font-weight: 700; font-size: 15px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; }
   .sahwrap-btn-copy:hover { background: var(--accent); color: white; }
   
-  .sahwrap-reset { color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: color 0.2s ease, border-color 0.2s ease; }
-  .sahwrap-reset:hover { color: var(--text-main); border-color: var(--text-main); }
+  .sahwrap-reset { color: var(--text-muted); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; display: inline-block; transition: color 0.2s ease; text-align: center; width: 100%; }
+  .sahwrap-reset:hover { color: var(--text-main); }
 
   /* 5-Box Grid Layout */
   .smeBoxGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 8px; }
@@ -226,7 +229,7 @@
   .clockTime { font-size: 13.5px; font-weight: 600; color: var(--text-main); font-variant-numeric: tabular-nums; letter-spacing: 0.5px; text-align: right; }
   
   /* Affirmation Banner */
-  .affirmationBanner { margin-top: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .affirmationBanner { margin-top: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
   .affirmationBannerTitle { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
   .affirmationRotate { display: flex; align-items: center; gap: 12px; }
   .affirmationHighlight { flex: 1; background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--accent); text-align: center; letter-spacing: 0.2px; line-height: 1.5; animation: fadeQuote 0.8s ease; }
@@ -253,6 +256,7 @@
     <button class="ctab" data-region="factorde" onclick="switchRegion('factorde')"><span class="ctabLabel">FACTOR DE</span><span class="ctabTime" id="tab-time-factorde"></span></button>
     <button class="ctab" data-region="factordk" onclick="switchRegion('factordk')"><span class="ctabLabel">FACTOR DK</span><span class="ctabTime" id="tab-time-factordk"></span></button>
     <button class="ctab" data-region="factorse" onclick="switchRegion('factorse')"><span class="ctabLabel">FACTOR SE</span><span class="ctabTime" id="tab-time-factorse"></span></button>
+    <button class="ctab" style="margin-left: 12px; border-left: 1px solid var(--border);" data-region="sahwrap" onclick="switchRegion('sahwrap')"><span class="ctabLabel">✨ KIRO AI</span><span class="ctabTime">Generator</span></button>
   </div>
 </div>
 
@@ -262,7 +266,6 @@
   <div class="content">
 
     <div class="policyBar active" id="policySmesarah">
-      
       <div class="affirmationBanner">
         <div class="affirmationBannerTitle">✨ Focus Area</div>
         <div class="affirmationRotate">
@@ -288,31 +291,7 @@
           </div>
         </div>
       </div>
-
-      <div class="sahwrap-wrapper" style="margin-top: 24px;">
-        <div class="sahwrap-title">🤖 Offline KIRO Generator</div>
-        
-        <div style="display: flex; gap: 20px; align-items: stretch; flex-wrap: wrap;">
-          
-          <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 12px;">
-            <textarea id="chatInput" class="sahwrap-textarea" style="height: 250px; margin-bottom: 0;" placeholder="Paste the customer's chat or query here..."></textarea>
-            <div style="display: flex; gap: 12px;">
-              <button class="sahwrap-btn-action" id="kiroBtn" style="margin-bottom: 0; flex: 2; border-radius: 8px; padding: 12px;" onclick="generateKiro()">Generate Notes</button>
-              <button class="sahwrap-reset" style="margin-bottom: 0; flex: 1; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-main); padding: 12px;" onclick="resetAIUI()">Clear</button>
-            </div>
-          </div>
-
-          <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 12px;">
-            <div id="aiLoading" style="color: var(--accent); font-style: italic; font-weight: 700; font-size: 14px; display: none; padding: 16px; border: 1px dashed var(--accent); border-radius: 8px; text-align: center; height: 250px; align-content: center;">Scanning chat for keywords... 🔍</div>
-            
-            <div id="aiOutput" class="sahwrap-output" style="margin-bottom: 0; height: 250px; overflow-y: auto;"></div>
-            
-            <button class="sahwrap-btn-copy" id="copyAiBtn" style="margin-bottom: 0; border-radius: 8px; padding: 12px;" onclick="copyAiText()">Copy Notes</button>
-          </div>
-
-        </div>
-      </div>
-      </div>
+    </div>
 
     <div class="policyBar" id="policyNordics"><div class="barTitle">NORDICS Key Policy Reference</div><div class="policyGrid"><div class="policyCell"><div class="policyLabel">Deadline Sat/Sun delivery</div><div class="policyValue">Tuesday 23:59 the week prior</div></div><div class="policyCell"><div class="policyLabel">Norway Delivery</div><div class="policyValue">7 days of the week</div></div><div class="policyCell"><div class="policyLabel">Denmark Payment</div><div class="policyValue">Klarna, Visa, Mastercard, PayPal</div></div><div class="policyCell"><div class="policyLabel">Sweden Delivery Fee</div><div class="policyValue">49 SEK per box</div></div><div class="policyCell"><div class="policyLabel">Refund Timeline</div><div class="policyValue">Up to 10 business days</div></div></div><div class="policyNote">📌 Always verify the customer specific deadline and delivery day in the account before quoting any details. Deadlines vary by country.</div></div>
     <div class="policyBar" id="policyDach"><div class="barTitle">DACH Key Policy Reference</div><div class="policyGrid"><div class="policyCell"><div class="policyLabel">Germany Delivery</div><div class="policyValue">Usually Mon to Sat, varies by region</div></div><div class="policyCell"><div class="policyLabel">AT and CH Delivery</div><div class="policyValue">Mon to Wed, Fri (AT) / Mon to Wed (CH)</div></div><div class="policyCell"><div class="policyLabel">Order Deadline</div><div class="policyValue">Usually Wed 23:59 or Fri 23:59 based on delivery day</div></div><div class="policyCell"><div class="policyLabel">Payment Methods</div><div class="policyValue">SEPA, PayPal, Credit Card, Klarna</div></div><div class="policyCell"><div class="policyLabel">Refund Timeline</div><div class="policyValue">Up to 10 business days</div></div></div><div class="policyNote">📌 Please verify specific DACH cutoffs per customer account as they strictly depend on the chosen delivery day and region.</div></div>
@@ -333,6 +312,25 @@
     <div class="panelWrap" id="panelFactorde"></div>
     <div class="panelWrap" id="panelFactordk"></div>
     <div class="panelWrap" id="panelFactorse"></div>
+    
+    <div class="panelWrap" id="panelSahwrap">
+      <div class="sahwrap-wrapper">
+        <div class="sahwrap-title">✨ Offline KIRO Generator</div>
+        <span class="sahwrap-label">Paste Chat Interaction</span>
+        <textarea id="chatInput" class="sahwrap-textarea" placeholder="Paste the customer's chat or query here..."></textarea>
+        
+        <button class="sahwrap-btn-action" id="kiroBtn" onclick="generateKiro()">Generate Notes</button>
+        
+        <div id="aiLoading" style="color: var(--accent); font-style: italic; font-weight: 700; font-size: 14px; display: none; margin-bottom: 20px; text-align: center;">Scanning chat for keywords... 🔍</div>
+        <div id="aiOutput" class="sahwrap-output"></div>
+        
+        <button class="sahwrap-btn-copy" id="copyAiBtn" onclick="copyAiText()">Copy Notes</button>
+        
+        <div style="margin-top: 16px;">
+          <span class="sahwrap-reset" onclick="resetAIUI()">Clear & Reset</span>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -692,12 +690,11 @@ let currentRegion = 'smesarah';
 function switchRegion(code) {
   currentRegion = code;
   
-  // Set region class for accent color
   document.body.className = document.body.className.replace(/region-\w+/g, '');
   document.body.classList.add(`region-${code}`);
 
   const logoEl = document.getElementById('mainLogo');
-  if (code === 'smesarah') {
+  if (code === 'smesarah' || code === 'sahwrap') {
     logoEl.style.display = 'none';
   } else if (code.startsWith('factor')) {
     logoEl.style.display = 'block';
@@ -707,8 +704,7 @@ function switchRegion(code) {
     logoEl.textContent = 'HELLOFRESH';
   }
 
-  // Handle active states
-  const allCodes = ['smesarah','nordics','dach','benelux','factorde','factordk','factorse'];
+  const allCodes = ['smesarah','nordics','dach','benelux','factorde','factordk','factorse', 'sahwrap'];
   document.querySelectorAll('.ctab').forEach((t, i) => {
     t.classList.toggle('active', allCodes[i] === code);
   });
@@ -722,10 +718,17 @@ function switchRegion(code) {
   const activePanelWrap = document.getElementById('panel' + policyId);
   if (activePanelWrap) activePanelWrap.classList.add('active');
 
-  document.getElementById('mainSearchBar').style.display = 'flex';
-  document.getElementById('searchInput').value = '';
-  renderSidebar(code);
-  filterSpiels();
+  if (code === 'sahwrap') {
+    document.getElementById('mainSearchBar').style.display = 'none';
+    document.getElementById('noResults').style.display = 'none';
+    const sidebar = document.getElementById('sidebar');
+    sidebar.innerHTML = '<div class="sidebarSection">Offline Tool</div><div class="sidebarItem active">✨ KIRO Generator</div><div style="padding: 24px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">This tool works offline by scanning your pasted chat for specific keywords to automatically generate KIRO notes.</div>';
+  } else {
+    document.getElementById('mainSearchBar').style.display = 'flex';
+    document.getElementById('searchInput').value = '';
+    renderSidebar(code);
+    filterSpiels();
+  }
 }
 
 function renderSidebar(code) {
@@ -838,83 +841,63 @@ switchRegion('smesarah');
 // =====================
 const smartRules = [
   {
-    anyOf: ["food poisoning", "sick", "ill", "hospital", "vomit", "throw up", "stomach", "nausea"],
-    allOf: [], noneOf: [],
-    code: "9. Complaint-Food Safety", k: "Food Poisoning", i: "Customer reported feeling unwell after eating meal", r: "Escalated to Food Safety team immediately and followed protocol."
-  },
-  {
-    anyOf: ["missing", "forgot", "didn't get", "not in box"],
-    allOf: ["recipe", "card"], noneOf: [],
-    code: "13. Complaint-Pick & Pack", k: "Missing Recipe Card", i: "Customer reported missing recipe instructions", r: "Apologized and provided link to digital recipe card."
-  },
-  {
-    anyOf: ["missing", "left out", "forgot", "didn't get", "not in box"],
-    allOf: [], noneOf: ["box", "delivery", "recipe"], 
-    code: "13. Complaint-Pick & Pack", k: "Missing", i: "Customer reported missing ingredients or meal", r: "Added appropriate credit for missing items and reported to Pick & Pack."
-  },
-  {
-    anyOf: ["double charge", "charged twice", "two charges", "billed twice"],
-    allOf: [], noneOf: [],
-    code: "25. Payments-Charge breakdown", k: "Double Charge", i: "Customer queried apparent double charge", r: "Investigated billing and clarified charges/processed refund."
-  },
-  {
-    anyOf: ["refund", "charge", "money", "bill", "invoice", "paid"],
-    allOf: [], noneOf: ["double", "twice"],
-    code: "26. Payments-Credit/Refund", k: "Refund", i: "Customer querying charge and requesting refund", r: "Reviewed account details and processed refund back to original payment method."
-  },
-  {
-    anyOf: ["cancel", "stop", "close account", "delete account"],
-    allOf: [], noneOf: ["first box", "1st box", "trial"],
+    match: (text) => /(cancel|stop\b|close account|unsubscribe|annuler|résilier|arrêter|annuleren|opzeggen)/i.test(text) && !/(first box|1st box|trial)/i.test(text),
     code: "2. Account Cancellation Customer Not Retained", k: "Account Management issues", i: "Customer requested account cancellation", r: "Cancelled account as requested and sent confirmation."
   },
   {
-    anyOf: ["driver", "courier", "delivery man", "delivery guy"],
-    allOf: ["rude", "thrown", "damaged property", "ignore", "gate", "doorbell", "leave safe"], noneOf: [],
-    code: "10. Complaint-Logistic-Courier company", k: "Driver Behaviour", i: "Customer reported unprofessional courier behavior", r: "Logged feedback against the courier for investigation and added notes."
+    match: (text) => /(refund|charge|money|bill\b|invoice|paid|remboursement|facturé|prélevé|terugbetaling|afgeschreven|geld)/i.test(text) && !/(double|twice|deux fois|twee keer)/i.test(text),
+    code: "26. Payments-Credit/Refund", k: "Refund", i: "Customer querying charge and requesting refund", r: "Reviewed account details and processed refund back to original payment method."
   },
   {
-    anyOf: ["never arrived", "didn't arrive", "no delivery", "missing box"],
-    allOf: [], noneOf: ["ingredient", "meal", "recipe"],
+    match: (text) => /(double charge|charged twice|two charges|billed twice|deux fois|twee keer)/i.test(text),
+    code: "25. Payments-Charge breakdown", k: "Double Charge", i: "Customer queried apparent double charge", r: "Investigated billing and clarified charges/processed refund."
+  },
+  {
+    match: (text) => /(missing|forgot|didn't get|not in box|manquant|oublié|pas reçu|ontbreekt|mist|niet ontvangen)/i.test(text) && /(recipe|card|recette|recept)/i.test(text),
+    code: "13. Complaint-Pick & Pack", k: "Missing Recipe Card", i: "Customer reported missing recipe instructions", r: "Apologized and provided link to digital recipe card."
+  },
+  {
+    match: (text) => /(missing|left out|forgot|didn't get|not in box|manquant|oublié|ontbreekt|mist)/i.test(text) && !/(box\b|delivery|recipe|boîte|colis|box|recept)/i.test(text),
+    code: "13. Complaint-Pick & Pack", k: "Missing", i: "Customer reported missing ingredients or meal", r: "Added appropriate credit for missing items and reported to Pick & Pack."
+  },
+  {
+    match: (text) => /(never arrived|didn't arrive|no delivery|missing box|jamais arrivé|pas livré|nooit aangekomen|niet geleverd)/i.test(text) && !/(ingredient|meal)/i.test(text),
     code: "12. Complaint-Logistics-Failed delivery", k: "No Delivery", i: "Customer reported delivery never arrived", r: "Investigated tracking, confirmed failed delivery, and issued refund/credit."
   },
   {
-    anyOf: ["late", "delay", "where is my box", "eta", "time slot"],
-    allOf: [], noneOf: ["never arrived", "didn't arrive", "no delivery"],
+    match: (text) => /(late\b|delay|where is my box|\beta\b|time slot|retard|te laat|vertraging)/i.test(text) && !/(never arrived)/i.test(text),
     code: "11. Complaint-Logistics-Early/Late", k: "Late 1 Day", i: "Customer checking on delayed delivery status", r: "Checked tracking, informed customer of current ETA, and provided options."
   },
   {
-    anyOf: ["damaged", "crushed", "squashed", "broken", "mould", "rotten", "spoiled"],
-    allOf: [], noneOf: ["warm", "hot", "melted"],
+    match: (text) => /(food poisoning|sick\b|ill\b|hospital|vomit|stomach|nausea|malade|intoxication|ziek)/i.test(text),
+    code: "9. Complaint-Food Safety", k: "Food Poisoning", i: "Customer reported feeling unwell after eating meal", r: "Escalated to Food Safety team immediately and followed protocol."
+  },
+  {
+    match: (text) => /(damaged|crushed|squashed|broken|mould|rotten|spoiled|abîmé|endommagé|cassé|beschadigd|kapot)/i.test(text) && !/(warm|hot\b|melted)/i.test(text),
     code: "14. Complaint-Quality", k: "Damage", i: "Customer reported damaged box items", r: "Reported quality issue internally and provided appropriate compensation."
   },
   {
-    anyOf: ["warm", "melted", "hot", "not cold", "leaking", "spilled", "burst"],
-    allOf: [], noneOf: [],
+    match: (text) => /(warm|melted|hot\b|not cold|leaking|spilled|burst|chaud|fondu|gesmolten|warm)/i.test(text),
     code: "14. Complaint-Quality", k: "Warm", i: "Customer reported box arrived warm or leaking", r: "Reported quality issue internally and provided appropriate compensation."
   },
   {
-    anyOf: ["address", "move", "change delivery", "delivery day", "update", "new home"],
-    allOf: [], noneOf: [],
+    match: (text) => /(address|move\b|change delivery|delivery day|update|new home|adresse|déménagement|adres|verhuizing)/i.test(text),
     code: "8. Account-Update account/subscription details", k: "Address", i: "Customer requesting to update subscription details", r: "Updated account details successfully per customer request."
   },
   {
-    anyOf: ["password", "login", "can't access", "locked out"],
-    allOf: [], noneOf: [],
+    match: (text) => /(password|login|can't access|locked out|mot de passe|wachtwoord)/i.test(text),
     code: "8. Account-Update account/subscription details", k: "Password Reset", i: "Customer having trouble logging in", r: "Sent password reset link and assisted with account access."
   },
   {
-    anyOf: ["first box", "1st box", "trial box"],
-    allOf: [], noneOf: [],
+    match: (text) => /(first box|1st box|trial box|première boîte|eerste box)/i.test(text),
     code: "Account 1st Box Change/Question", k: "Change Requests", i: "Customer inquired about their very first delivery", r: "Assisted customer with modifications to their first box."
   },
   {
-    anyOf: ["voucher", "code", "discount", "promo", "referral", "freebie", "gift card"],
-    allOf: [], noneOf: [],
+    match: (text) => /(voucher|code\b|discount|promo|referral|freebie|gift card|réduction|korting)/i.test(text),
     code: "17. Marketing-Applying Voucher/Gift Card", k: "Not Applied", i: "Customer querying unapplied discount code", r: "Reviewed voucher terms and manually applied discount to account."
   },
   {
-    anyOf: ["app", "website", "glitch", "error", "won't load", "blank screen", "bug"],
-    allOf: [], noneOf: [],
+    match: (text) => /(\bapp\b|website|glitch|error\b|won't load|blank screen|\bbug\b|erreur|fout)/i.test(text),
     code: "15. Complaint - Website/App/Internal Tech Error", k: "Website", i: "Customer reporting technical issue with website/app", r: "Troubleshot technical issue and escalated to tech team if necessary."
   }
 ];
@@ -927,28 +910,19 @@ function generateKiro() {
   
   out.style.display = 'none';
   document.getElementById('copyAiBtn').style.display = 'none';
-  document.getElementById('aiLoading').style.display = 'flex';
+  document.getElementById('aiLoading').style.display = 'block';
   document.getElementById('kiroBtn').disabled = true;
   
   setTimeout(() => {
-    // Default fallback if no rules match
+    
+    // Default fallback if no rules match (e.g. just a generic Bot greeting like your screenshot!)
     let matchedCode = "23. Other-Non-customer query";
     let matchedK = "Passed On Details";
-    let matchedI = "General customer inquiry";
+    let matchedI = "General customer inquiry / Verification phase";
     let matchedR = "Assisted customer and answered questions regarding account.";
 
-    // Smart logic checking for exact whole words
-    const containsWord = (word) => {
-        const regex = new RegExp('\\b' + word.replace(/'/g, "\\'") + '\\b', 'i');
-        return regex.test(input);
-    };
-
     for (let rule of smartRules) {
-      let hasAny = rule.anyOf.length === 0 || rule.anyOf.some(containsWord);
-      let hasAll = rule.allOf.length === 0 || rule.allOf.every(containsWord);
-      let hasNone = rule.noneOf.length === 0 || rule.noneOf.every(word => !containsWord(word));
-
-      if (hasAny && hasAll && hasNone) {
+      if (rule.match(input)) {
         matchedCode = rule.code;
         matchedK = rule.k;
         matchedI = rule.i;
