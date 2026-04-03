@@ -10,63 +10,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Global Dark UI Palette */
-    --gray-bg: #0d1117;      /* Main App Background */
-    --gray-border: #30363d;  /* Universal Borders */
-    --gray-text: #8b949e;    /* Muted Labels & Subtext */
-    --gray-light: #21262d;   /* Subtle Hover/Input Backgrounds */
-    --white: #161b22;        /* Main Card/Container Backgrounds */
-    --black: #c9d1d9;        /* Primary Readable Text */
+    /* Professional Muted UI Palette for main app */
+    --gray-bg: #f8f9fa;
+    --gray-border: #e5e7eb;
+    --gray-text: #6b7280;
+    --gray-light: #f3f4f6;
+    --white: #ffffff;
+    --black: #1f2937;
 
-    /* Dynamic Region Palettes (Dark Mode Adapted) */
+    --theme-bg: #e2e8f0;
+    --theme-border: #cbd5e1;
+    --theme-light: #f8fafc;
+    --theme-text: #475569;
+
+    --smesarah-bg: #fce7f3;
+    --smesarah-light: #fdf2f8;
+    --smesarah-border: #fbcfe8;
+    --smesarah-text: #be185d;
+
+    --nordics-bg: #e0f2fe;
+    --nordics-border: #bae6fd;
+    --nordics-light: #f0f9ff;
+    --nordics-text: #0369a1;
+
+    --dach-bg: #fee2e2;
+    --dach-border: #fecaca;
+    --dach-light: #fef2f2;
+    --dach-text: #b91c1c;
+
+    --benelux-bg: #dcfce7;
+    --benelux-border: #bbf7d0;
+    --benelux-light: #f0fdf4;
+    --benelux-text: #15803d;
     
-    /* SME Sarah (Deep Pink Accent) */
-    --smesarah-bg: #381124;      
-    --smesarah-light: #1f0a14;   
-    --smesarah-border: #f472b6;  
-    --smesarah-text: #fce7f3;    
+    /* FACTOR DE: Muted charcoal with subtle red accent */
+    --factorde-bg: #374151;
+    --factorde-border: #991b1b;
+    --factorde-light: #4b5563;
+    --factorde-text: #fecaca;
 
-    /* Nordics (Deep Blue Accent) */
-    --nordics-bg: #0f1c3f;
-    --nordics-light: #060e24;
-    --nordics-border: #60a5fa;
-    --nordics-text: #dbeafe;
+    /* FACTOR DK: Muted navy with subtle blue accent */
+    --factordk-bg: #1e3a8a;
+    --factordk-border: #3b82f6;
+    --factordk-light: #1e40af;
+    --factordk-text: #dbeafe;
 
-    /* DACH (Deep Red Accent) */
-    --dach-bg: #3d1414;
-    --dach-light: #200808;
-    --dach-border: #f87171;
-    --dach-text: #fee2e2;
-
-    /* Benelux (Deep Green Accent) */
-    --benelux-bg: #0d3826;
-    --benelux-light: #051a11;
-    --benelux-border: #34d399;
-    --benelux-text: #d1fae5;
+    /* FACTOR SE: Muted burgundy with subtle pink accent */
+    --factorse-bg: #831843;
+    --factorse-border: #f472b6;
+    --factorse-light: #9d174d;
+    --factorse-text: #fce7f3;
     
-    /* FACTOR DE (Charcoal/Crimson Accent) */
-    --factorde-bg: #212121;
-    --factorde-light: #141414;
-    --factorde-border: #ef4444;
-    --factorde-text: #f3f4f6;
-
-    /* FACTOR DK (Deep Indigo Accent) */
-    --factordk-bg: #1e1b4b;
-    --factordk-light: #0f0b29;
-    --factordk-border: #818cf8;
-    --factordk-text: #e0e7ff;
-
-    /* FACTOR SE (Burgundy/Fuchsia Accent) */
-    --factorse-bg: #4a1029;
-    --factorse-light: #250814;
-    --factorse-border: #e879f9;
-    --factorse-text: #fae8ff;
-    
-    /* SAHWRAP AI (Dark Violet Accent) */
-    --sahwrap-bg: #2e1065;
-    --sahwrap-light: #170833;
-    --sahwrap-border: #a855f7;
-    --sahwrap-text: #ede9fe;
+    /* SAHWRAP AI (Reverted to original vibrant colors) */
+    --sahwrap-bg: #ffcce0;
+    --sahwrap-border: #f472b6;
+    --sahwrap-light: #fcf4f7;
+    --sahwrap-text: #e11d48;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,13 +77,14 @@
     font-size: 14px;
     min-height: 100vh;
     position: relative;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   .header {
     background: var(--theme-bg);
     color: var(--theme-text);
     padding: 18px 30px 0;
-    border-bottom: 2px solid var(--theme-border);
+    border-bottom: 4px solid var(--theme-border);
     transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
     position: relative;
   }
@@ -96,15 +96,14 @@
   }
   .logo {
     background: var(--white);
-    color: var(--theme-border);
+    color: var(--theme-text);
     font-weight: 700;
     font-size: 16px;
     letter-spacing: 2px;
     padding: 8px 18px;
     border-radius: 8px;
-    border: 1px solid var(--theme-border);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: color 0.4s ease, border-color 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: color 0.4s ease;
     text-transform: uppercase;
   }
   .headerTitle {
@@ -112,25 +111,48 @@
     font-weight: 600;
   }
   .headerSub {
-    font-size: 13px;
+    font-size: 13.5px;
     margin-left: auto;
-    color: #e2e8f0;
-    font-weight: 600;
+    color: var(--theme-text);
+    font-weight: 500;
+    opacity: 0.85;
     display: flex;
     align-items: center;
   }
   .headerSub .sep {
-    opacity: 0.3;
-    margin: 0 10px;
+    opacity: 0.4;
+    margin: 0 8px;
   }
   
   /* Last Edited Label */
   .lastEdited {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 11.5px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #ffffff;
+    background: rgba(255,255,255,0.5);
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--theme-text);
+  }
+
+  .themeToggleBtn {
+    background: var(--white);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .themeToggleBtn:hover {
+    background: var(--theme-light);
   }
 
   .countryTabs {
@@ -138,34 +160,71 @@
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 10px;
-    margin-bottom: -2px; /* Pull down over header border */
   }
   .ctab {
     padding: 12px 20px;
-    border: 2px solid transparent;
-    border-bottom: none;
     border-radius: 12px 12px 0 0;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+    border: none;
+    border-bottom: none;
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0,0,0,0.25);
-    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.3);
+    color: var(--theme-text);
     font-family: inherit;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
   }
-  .ctab:hover { 
-    background: rgba(0,0,0,0.4); 
-    color: rgba(255,255,255,0.8); 
-  }
+  .ctab:hover { background: rgba(255,255,255,0.4); }
   .ctab.active {
-    background: var(--gray-bg);
-    color: var(--theme-border);
-    border-color: var(--theme-border);
+    background: var(--white);
+    color: var(--theme-text);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
   }
+
+  /* DARK MODE OVERRIDES */
+  body.theme-dark {
+    --gray-bg: #0d1117;
+    --gray-border: #30363d;
+    --gray-text: #8b949e;
+    --gray-light: #21262d;
+    --white: #161b22;
+    --black: #c9d1d9;
+  }
+  body.theme-dark .header { color: #ffffff; }
+  body.theme-dark .headerTitle { color: #ffffff; }
+  body.theme-dark .headerSub { color: rgba(255,255,255,0.85); }
+  body.theme-dark .lastEdited { background: rgba(0,0,0,0.2); color: rgba(255,255,255,0.9); }
+  body.theme-dark .themeToggleBtn { background: rgba(0,0,0,0.2); color: #ffffff; border-color: rgba(255,255,255,0.2); }
+  body.theme-dark .themeToggleBtn:hover { background: rgba(0,0,0,0.4); }
+  body.theme-dark .ctab { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+  body.theme-dark .ctab:hover { background: rgba(255,255,255,0.2); color: #ffffff; }
+  body.theme-dark .ctab.active { background: var(--gray-bg); color: var(--theme-border); box-shadow: none; border: 2px solid var(--theme-border); border-bottom: none; }
+  body.theme-dark .logo { color: var(--theme-border); }
+  body.theme-dark .barTitle { color: var(--theme-border); }
+  body.theme-dark .policyBar { background: var(--gray-bg); border-bottom-color: var(--gray-border); }
+  body.theme-dark .policyCell { background: var(--white); border-color: var(--gray-border); }
+  body.theme-dark .policyCell:hover { border-color: var(--theme-border); box-shadow: none; }
+  body.theme-dark .policyLabel { color: var(--gray-text); }
+  body.theme-dark .policyValue { color: var(--black); }
+  body.theme-dark .policyNote { background: var(--theme-light); border-left-color: var(--theme-border); color: var(--black); }
+  body.theme-dark .sidebarItem.active { background: var(--theme-light); border-left-color: var(--theme-border); color: var(--theme-border); }
+  body.theme-dark .sidebarItem:hover { background: var(--gray-light); color: var(--theme-border); }
+  body.theme-dark .sectionHeader .icon { background: var(--theme-light); color: var(--theme-border); }
+  body.theme-dark .tag { background: var(--theme-light); color: var(--theme-border); border: 1px solid var(--theme-border); }
+  body.theme-dark .spielCard:hover { border-color: var(--theme-border); box-shadow: none; }
+  body.theme-dark .searchBar { background: rgba(13, 17, 23, 0.95); }
+  body.theme-dark .searchBar input { background: var(--gray-light); border-color: var(--gray-border); color: var(--black); box-shadow: none; }
+  body.theme-dark .searchBar input:focus { border-color: var(--theme-border); box-shadow: 0 0 0 3px var(--theme-light); }
+  body.theme-dark .copyBtn { background: var(--gray-light); color: var(--gray-text); border-color: var(--gray-border); }
+  body.theme-dark .copyBtn:hover { background: var(--theme-border); border-color: var(--theme-border); color: #111827; }
+  body.theme-dark .affirmationBanner { background: var(--white); border-color: var(--gray-border); }
+  body.theme-dark .affirmationHighlight { background: var(--theme-light); color: var(--theme-border); border-color: var(--theme-border); }
+  body.theme-dark .affirmationNavBtn { background: var(--gray-light); color: var(--gray-text); border-color: var(--gray-border); }
+  body.theme-dark .affirmationNavBtn:hover { background: var(--theme-border); color: #111827; }
 
   .main {
     display: flex;
@@ -180,8 +239,12 @@
     border-right: 1px solid var(--gray-border);
     overflow-y: auto;
     padding: 24px 0;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.02);
     z-index: 5;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
+  body.theme-dark .sidebar { box-shadow: none; }
+  
   .sidebarSection {
     font-size: 11px;
     font-weight: 700;
@@ -203,61 +266,92 @@
     text-overflow: ellipsis;
     font-weight: 500;
   }
-  .sidebarItem:hover { 
-    background: var(--gray-light); 
-    color: var(--theme-border); 
-  }
-  .sidebarItem.active { 
-    background: var(--theme-light); 
-    border-left-color: var(--theme-border); 
-    color: var(--theme-border); 
-    font-weight: 700; 
-  }
+  .sidebarItem:hover { background: var(--gray-light); color: var(--theme-text); }
+  .sidebarItem.active { background: var(--theme-light); border-left-color: var(--theme-border); color: var(--theme-text); font-weight: 700; }
 
-  .content { flex: 1; overflow-y: auto; padding: 0; background: var(--gray-bg); }
+  .content { flex: 1; overflow-y: auto; padding: 0; background: var(--gray-bg); transition: background 0.3s ease; }
 
-  .policyBar { background: var(--gray-bg); border-bottom: 1px solid var(--gray-border); padding: 20px 24px; display: none; }
+  .policyBar { background: var(--gray-bg); border-bottom: 1px solid var(--gray-border); padding: 20px 24px; display: none; transition: background 0.3s ease, border-color 0.3s ease; }
   .policyBar.active { display: block; }
   .policyGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
-  .policyCell { background: var(--white); border-radius: 8px; padding: 16px; border: 1px solid var(--gray-border); transition: border-color 0.3s; }
-  .policyCell:hover { border-color: var(--theme-border); }
+  .policyCell { background: var(--white); border-radius: 8px; padding: 16px; border: 1px solid var(--gray-border); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
+  .policyCell:hover { border-color: var(--theme-border); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
   .policyLabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-text); margin-bottom: 6px; }
   .policyValue { font-size: 14px; font-weight: 600; color: var(--black); line-height: 1.5; }
-  .policyNote { font-size: 13px; color: var(--black); margin-top: 20px; background: var(--theme-light); border-left: 4px solid var(--theme-border); padding: 12px 18px; border-radius: 0 8px 8px 0; font-weight: 500; }
-  .barTitle { font-size: 15px; font-weight: 700; color: var(--theme-border); text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
+  .policyNote { font-size: 13px; color: var(--theme-text); margin-top: 20px; background: var(--theme-light); border-left: 4px solid var(--theme-border); padding: 12px 18px; border-radius: 0 8px 8px 0; font-weight: 500; transition: background 0.3s ease; }
+  .barTitle { font-size: 15px; font-weight: 700; color: var(--theme-text); text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
 
   .panelWrap { padding: 32px 36px 80px; display: none; }
   .panelWrap.active { display: block; }
 
-  .spielSection { margin-bottom: 24px; background: var(--white); border-radius: 10px; border: 1px solid var(--gray-border); overflow: hidden; }
+  .spielSection { margin-bottom: 24px; background: var(--white); border-radius: 10px; border: 1px solid var(--gray-border); box-shadow: 0 2px 12px rgba(0,0,0,0.02); overflow: hidden; transition: background 0.3s ease, border-color 0.3s ease; }
+  body.theme-dark .spielSection { box-shadow: none; }
+  
   .sectionHeader { display: flex; align-items: center; gap: 16px; padding: 18px 24px; cursor: pointer; background: var(--white); margin-bottom: 0; transition: background 0.3s; }
   .sectionHeader:hover { background: var(--gray-light); }
-  .sectionHeader .icon { width: 34px; height: 34px; border-radius: 8px; background: var(--theme-light); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--theme-border); flex-shrink: 0; transition: background 0.4s, color 0.4s; }
+  .sectionHeader .icon { width: 34px; height: 34px; border-radius: 8px; background: var(--theme-light); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--theme-text); flex-shrink: 0; transition: background 0.4s, color 0.4s; }
   .sectionHeader h2 { font-size: 15px; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 1px; flex: 1; }
   .sectionHeader .chevron { font-size: 12px; color: var(--gray-text); transition: transform 0.3s ease; }
   .sectionHeader.open { border-bottom: 1px solid var(--gray-border); }
   .sectionHeader.open .chevron { transform: rotate(180deg); }
 
-  .sectionBody { display: none; padding: 24px; gap: 16px; flex-direction: column; background: var(--gray-bg); }
+  .sectionBody { display: none; padding: 24px; gap: 16px; flex-direction: column; background: var(--gray-bg); transition: background 0.3s ease; }
   .sectionBody.open { display: flex; }
 
-  .spielCard { background: var(--white); border: 1px solid var(--gray-border); border-radius: 8px; padding: 20px 24px; position: relative; transition: transform 0.2s ease, border-color 0.2s ease; }
-  .spielCard:hover { transform: translateY(-2px); border-color: var(--theme-border); }
+  .spielCard { background: var(--white); border: 1px solid var(--gray-border); border-radius: 8px; padding: 20px 24px; position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease; }
+  .spielCard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); border-color: var(--theme-border); }
   .spielLabel { font-size: 11.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-text); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; background: var(--theme-light); color: var(--theme-border); border: 1px solid var(--theme-border); }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; background: var(--theme-light); color: var(--theme-text); }
   .spielText { font-size: 14.5px; line-height: 1.7; color: var(--black); white-space: pre-wrap; padding-right: 70px; }
+  .placeholder { background: #f3f4f6; border-radius: 4px; padding: 2px 6px; font-weight: 600; font-style: normal; color: #4b5563; font-size: 13.5px; display: inline-block; border: 1px solid #e5e7eb; }
+  body.theme-dark .placeholder { background: var(--theme-light); border-color: var(--theme-border); color: var(--theme-border); }
   
-  /* Dynamic placeholder matches the active theme */
-  .placeholder { background: var(--theme-light); border: 1px solid var(--theme-border); border-radius: 4px; padding: 2px 6px; font-weight: 600; font-style: normal; color: var(--theme-border); font-size: 13.5px; display: inline-block; }
+  .copyBtn { position: absolute; top: 20px; right: 24px; background: var(--white); border: 1px solid var(--gray-border); border-radius: 6px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--gray-text); cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
+  .copyBtn:hover { background: var(--theme-light); border-color: var(--theme-border); color: var(--theme-text); }
+  .copyBtn.copied { background: var(--theme-text); color: var(--white); border-color: var(--theme-text); }
+  body.theme-dark .copyBtn.copied { background: #10b981; color: #fff; border-color: #10b981; }
   
-  .copyBtn { position: absolute; top: 20px; right: 24px; background: var(--gray-light); border: 1px solid var(--gray-border); border-radius: 6px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--gray-text); cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
-  .copyBtn:hover { background: var(--theme-border); border-color: var(--theme-border); color: #111827; }
-  .copyBtn.copied { background: #10b981; color: #fff; border-color: #10b981; }
-  
-  .searchBar { display: flex; align-items: center; gap: 12px; padding: 24px 36px; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-border); position: sticky; top: 0; z-index: 10; }
-  .searchBar input { flex: 1; border: 1px solid var(--gray-border); border-radius: 8px; padding: 14px 20px; font-size: 15px; font-family: inherit; background: var(--gray-light); color: var(--black); outline: none; transition: all 0.3s ease; }
+  .searchBar { display: flex; align-items: center; gap: 12px; padding: 24px 36px; background: rgba(248,249,250,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-border); position: sticky; top: 0; z-index: 10; transition: background 0.3s ease, border-color 0.3s ease; }
+  .searchBar input { flex: 1; border: 1px solid var(--gray-border); border-radius: 8px; padding: 14px 20px; font-size: 15px; font-family: inherit; background: var(--white); color: var(--black); outline: none; transition: all 0.3s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
   .searchBar input:focus { border-color: var(--theme-border); box-shadow: 0 0 0 3px var(--theme-light); }
   .noResults { text-align: center; color: var(--gray-text); padding: 80px; font-size: 15px; display: none; font-weight: 500; }
+
+  /* SahWrap Generator Scoped CSS */
+  .sahwrap-wrapper { max-width: 650px; margin: 0 auto; font-family: 'Quicksand', sans-serif; background: #fcf4f7; padding: 24px; border-radius: 24px; border: 2px dashed #ffcce0; }
+  body.theme-dark .sahwrap-wrapper { background: transparent; border: none; padding: 24px; }
+  
+  .sahwrap-card { background: white; border: 3px solid #ffe4ed; border-radius: 20px; padding: 24px; text-align: center; box-shadow: 0 4px 15px rgba(255,192,203,0.2); }
+  body.theme-dark .sahwrap-card { background: var(--white); border: 1px solid var(--gray-border); border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+  
+  .sahwrap-title { color: #f472b6; font-size: 22px; font-weight: 700; margin-bottom: 5px; }
+  body.theme-dark .sahwrap-title { color: var(--sahwrap-border); letter-spacing: 0.5px; margin-bottom: 20px; }
+  
+  .sahwrap-label { color: #f472b6; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; text-align: left; display: block; }
+  body.theme-dark .sahwrap-label { color: var(--gray-text); }
+  
+  .sahwrap-textarea { width: 100%; box-sizing: border-box; background: #fff5f8; border: 2px solid #ffcce0; border-radius: 12px; padding: 16px; height: 140px; resize: none; font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 14px; color: #4b5563; outline: none; margin-bottom: 20px; transition: border-color 0.2s; }
+  body.theme-dark .sahwrap-textarea { background: var(--gray-bg); border: 1px solid var(--gray-border); color: var(--black); font-weight: 500; }
+  .sahwrap-textarea:focus { border-color: var(--sahwrap-border); background: var(--white); }
+  body.theme-dark .sahwrap-textarea:focus { background: var(--gray-light); }
+  
+  .sahwrap-btn-action { width: 100%; background: #00e676; color: white; border: none; border-radius: 20px; padding: 14px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; font-family: 'Quicksand', sans-serif; margin-bottom: 20px; }
+  body.theme-dark .sahwrap-btn-action { border-radius: 12px; background: #10b981; }
+  .sahwrap-btn-action:hover:not(:disabled) { background: #00c853; transform: scale(1.02); }
+  body.theme-dark .sahwrap-btn-action:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
+  .sahwrap-btn-action:disabled { background: #a7f3d0; cursor: not-allowed; }
+  body.theme-dark .sahwrap-btn-action:disabled { background: var(--gray-border); color: var(--gray-text); transform: none; box-shadow: none; }
+  
+  .sahwrap-output { background: #f0fdf4; border: 2px solid #00e676; border-radius: 12px; padding: 20px; text-align: left; font-size: 14px; color: #374151; white-space: pre-wrap; display: none; margin-bottom: 20px; line-height: 1.6; font-weight: 600; }
+  body.theme-dark .sahwrap-output { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 14.5px; color: var(--black); font-weight: 500; }
+  
+  .sahwrap-btn-copy { width: 100%; background: #ffcce0; color: #e11d48; border: none; border-radius: 20px; padding: 14px; font-weight: 700; font-size: 15px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; }
+  body.theme-dark .sahwrap-btn-copy { background: transparent; color: var(--sahwrap-border); border: 1px solid var(--sahwrap-border); border-radius: 12px; }
+  .sahwrap-btn-copy:hover { background: #f472b6; color: white; }
+  body.theme-dark .sahwrap-btn-copy:hover { background: var(--sahwrap-border); color: #fff; }
+  
+  .sahwrap-reset { color: #f472b6; font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 12px; display: inline-block; }
+  body.theme-dark .sahwrap-reset { color: var(--gray-text); }
+  body.theme-dark .sahwrap-reset:hover { color: var(--black); }
 
   /* Tab local time display */
   .ctabTime { font-size: 10px; font-weight: 600; opacity: 0.7; letter-spacing: 0; display: block; line-height: 1.2; margin-top: 1px; }
@@ -265,12 +359,12 @@
   .ctabLabel { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
 
   /* Affirmation Banner */
-  .affirmationBanner { margin-top: 24px; background: var(--white); border: 1px solid var(--gray-border); border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .affirmationBanner { margin-top: 24px; background: var(--white); border: 1px solid var(--gray-border); border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: background 0.3s, border-color 0.3s; }
   .affirmationBannerTitle { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray-text); display: flex; align-items: center; gap: 8px; }
   .affirmationRotate { display: flex; align-items: center; gap: 12px; }
-  .affirmationHighlight { flex: 1; background: var(--theme-light); border: 1px solid var(--theme-border); border-radius: 8px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--theme-border); text-align: center; letter-spacing: 0.2px; line-height: 1.5; animation: fadeQuote 0.8s ease; }
-  .affirmationNavBtn { background: var(--gray-light); border: 1px solid var(--gray-border); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: var(--gray-text); flex-shrink: 0; transition: background 0.2s, color 0.2s; font-family: inherit; }
-  .affirmationNavBtn:hover { background: var(--theme-border); color: #111827; }
+  .affirmationHighlight { flex: 1; background: var(--theme-light); border: 1px solid var(--theme-border); border-radius: 8px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--theme-text); text-align: center; letter-spacing: 0.2px; line-height: 1.5; animation: fadeQuote 0.8s ease; transition: background 0.3s, border-color 0.3s, color 0.3s; }
+  .affirmationNavBtn { background: var(--white); border: 1px solid var(--gray-border); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: var(--gray-text); flex-shrink: 0; transition: background 0.2s, border-color 0.2s, color 0.2s; font-family: inherit; }
+  .affirmationNavBtn:hover { background: var(--gray-light); color: var(--black); }
   
   /* 5-Box Grid Layout (4 Trays + 1 Unified Clock) */
   .smeBoxGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 8px; }
@@ -284,17 +378,24 @@
     display: flex; 
     flex-direction: column; 
     gap: 12px; 
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease;
     min-height: 140px; /* Force consistent height */
   }
-  .smeBox:hover { transform: translateY(-2px); border-color: var(--theme-border); }
+  .smeBox:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.04); border-color: var(--theme-border); }
   
-  /* Muted Color Accents for Boxes on Dark Theme */
-  .smeBox-affirm  { border-top: 3px solid #818cf8; } /* Indigo */
-  .smeBox-mindset { border-top: 3px solid #f472b6; } /* Pink */
-  .smeBox-reminder{ border-top: 3px solid #34d399; } /* Green */
-  .smeBox-tip     { border-top: 3px solid #fbbf24; } /* Amber */
-  .smeBox-clock   { border-top: 3px solid #60a5fa; } /* Blue */
+  /* Muted Color Accents for Boxes */
+  .smeBox-affirm  { border-top: 3px solid #6366f1; }
+  .smeBox-mindset { border-top: 3px solid #ec4899; }
+  .smeBox-reminder{ border-top: 3px solid #10b981; }
+  .smeBox-tip     { border-top: 3px solid #f59e0b; }
+  .smeBox-clock   { border-top: 3px solid #3b82f6; }
+
+  /* Dark mode specific top borders */
+  body.theme-dark .smeBox-affirm  { border-top: 3px solid #818cf8; }
+  body.theme-dark .smeBox-mindset { border-top: 3px solid #f472b6; }
+  body.theme-dark .smeBox-reminder{ border-top: 3px solid #34d399; }
+  body.theme-dark .smeBox-tip     { border-top: 3px solid #fbbf24; }
+  body.theme-dark .smeBox-clock   { border-top: 3px solid #60a5fa; }
 
   @media (max-width: 1400px) { .smeBoxGrid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 900px) { .smeBoxGrid { grid-template-columns: repeat(2, 1fr); } }
@@ -305,33 +406,11 @@
 
   /* Unified World Clock Internal Layout */
   .clockContainer { display: flex; flex-direction: column; gap: 6px; flex: 1; justify-content: center; }
-  .clockRow { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--gray-border); padding-bottom: 4px; margin-bottom: 2px; }
+  .clockRow { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--gray-border); padding-bottom: 4px; margin-bottom: 2px; transition: border-color 0.3s; }
   .clockRow:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .clockInitials { font-size: 11px; font-weight: 700; color: var(--gray-text); width: 30px; }
-  .clockTime { font-size: 13.5px; font-weight: 600; color: var(--theme-border); font-variant-numeric: tabular-nums; letter-spacing: 0.5px; text-align: right; }
-
-  /* ========================================================
-     SAHWRAP AI GENERATOR (Dark Mode Native UI)
-     ======================================================== */
-  .sahwrap-wrapper { max-width: 650px; margin: 0 auto; font-family: 'Quicksand', sans-serif; background: transparent; padding: 24px; }
-  .sahwrap-card { background: var(--white); border: 1px solid var(--gray-border); border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-  .sahwrap-title { color: var(--sahwrap-border); font-size: 22px; font-weight: 700; margin-bottom: 20px; letter-spacing: 0.5px; }
-  .sahwrap-label { color: var(--gray-text); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; text-align: left; display: block; }
-  
-  .sahwrap-textarea { width: 100%; box-sizing: border-box; background: var(--gray-bg); border: 1px solid var(--gray-border); border-radius: 12px; padding: 16px; height: 140px; resize: none; font-family: 'Quicksand', sans-serif; font-weight: 500; font-size: 14px; color: var(--black); outline: none; margin-bottom: 20px; transition: border-color 0.2s; }
-  .sahwrap-textarea:focus { border-color: var(--sahwrap-border); background: var(--gray-light); }
-  
-  .sahwrap-btn-action { width: 100%; background: #10b981; color: white; border: none; border-radius: 12px; padding: 14px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; font-family: 'Quicksand', sans-serif; margin-bottom: 20px; }
-  .sahwrap-btn-action:hover:not(:disabled) { background: #059669; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
-  .sahwrap-btn-action:disabled { background: var(--gray-border); color: var(--gray-text); cursor: not-allowed; transform: none; box-shadow: none; }
-  
-  .sahwrap-output { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 20px; text-align: left; font-size: 14.5px; color: var(--black); white-space: pre-wrap; display: none; margin-bottom: 20px; line-height: 1.6; font-weight: 500; }
-  
-  .sahwrap-btn-copy { width: 100%; background: transparent; color: var(--sahwrap-border); border: 1px solid var(--sahwrap-border); border-radius: 12px; padding: 14px; font-weight: 700; font-size: 15px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; }
-  .sahwrap-btn-copy:hover { background: var(--sahwrap-border); color: #fff; }
-  
-  .sahwrap-reset { color: var(--gray-text); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 12px; display: inline-block; transition: color 0.2s; }
-  .sahwrap-reset:hover { color: var(--black); }
+  .clockTime { font-size: 13.5px; font-weight: 600; color: var(--black); font-variant-numeric: tabular-nums; letter-spacing: 0.5px; text-align: right; }
+  body.theme-dark .clockTime { color: var(--theme-border); }
 </style>
 </head>
 <body class="theme-dark">
@@ -341,8 +420,9 @@
     <div class="logo" id="mainLogo" style="display: none;">HELLOFRESH</div>
     <div class="headerTitle">Customer Care Spiel Guide</div>
     <div class="headerSub">
-      Property of SME Sarah <span class="sep">|</span> Internal Use Only <span class="sep">|</span> <span class="lastEdited" id="lastEditedLabel">LAST EDITED: 03 APR 2026</span>
+      Property of SME Sarah <span class="sep">|</span> Internal Use Only <span class="sep">|</span> <span class="lastEdited" id="lastEditedLabel">Last edited: 03 Apr 2026</span>
     </div>
+    <button id="themeToggle" class="themeToggleBtn" onclick="toggleTheme()">☀️ Light Mode</button>
   </div>
   <div class="countryTabs">
     <button class="ctab active" onclick="switchRegion('smesarah')"><span class="ctabLabel">SME Sarah</span><span class="ctabTime" id="tab-time-smesarah"></span></button>
@@ -352,7 +432,7 @@
     <button class="ctab" data-region="factorde" onclick="switchRegion('factorde')"><span class="ctabLabel">FACTOR DE</span><span class="ctabTime" id="tab-time-factorde"></span></button>
     <button class="ctab" data-region="factordk" onclick="switchRegion('factordk')"><span class="ctabLabel">FACTOR DK</span><span class="ctabTime" id="tab-time-factordk"></span></button>
     <button class="ctab" data-region="factorse" onclick="switchRegion('factorse')"><span class="ctabLabel">FACTOR SE</span><span class="ctabTime" id="tab-time-factorse"></span></button>
-    <button class="ctab" style="margin-left: 12px; border-left: 1px solid rgba(255,255,255,0.1);" data-region="sahwrap" onclick="switchRegion('sahwrap')"><span class="ctabLabel">✨ KIRO AI</span></button>
+    <button class="ctab" style="margin-left: 12px; border-left: 1px solid rgba(128,128,128,0.2);" data-region="sahwrap" onclick="switchRegion('sahwrap')"><span class="ctabLabel">✨ KIRO AI</span><span class="ctabTime">Generator</span></button>
   </div>
 </div>
 
@@ -400,8 +480,6 @@
               <div class="clockRow"><span class="clockInitials">DK</span><span class="clockTime" id="clock-dk"></span></div>
               <div class="clockRow"><span class="clockInitials">SE</span><span class="clockTime" id="clock-se"></span></div>
               <div class="clockRow"><span class="clockInitials">NL</span><span class="clockTime" id="clock-nl"></span></div>
-              <div class="clockRow"><span class="clockInitials">BE</span><span class="clockTime" id="clock-be"></span></div>
-              <div class="clockRow"><span class="clockInitials">AT</span><span class="clockTime" id="clock-at"></span></div>
             </div>
           </div>
           
@@ -437,19 +515,17 @@
     
     <div class="panelWrap" id="panelSahwrap">
       <div class="sahwrap-wrapper">
-        <div class="sahwrap-card">
-          <div class="sahwrap-title">✨ KIRO Generator ✨</div>
-          <span class="sahwrap-label">Paste Chat Interaction</span>
-          <textarea id="chatInput" class="sahwrap-textarea" placeholder="Paste the customer's chat or query here..."></textarea>
-          
-          <button class="sahwrap-btn-action" id="kiroBtn" onclick="generateKiro()">✨ Generate KIRO Notes!</button>
-          
-          <div id="aiLoading" style="color: #10b981; font-style: italic; font-weight: 600; font-size: 14px; display: none; margin-bottom: 20px; text-align: center;">Analyzing chat context... ✨</div>
-          <div id="aiOutput" class="sahwrap-output"></div>
-          
-          <button class="sahwrap-btn-copy" id="copyAiBtn" onclick="copyAiText()">Grab My Notes! 💖</button>
-          <div class="sahwrap-reset" onclick="resetAIUI()">Clear Chat & Reset</div>
-        </div>
+        <div class="sahwrap-title">✨ KIRO Generator</div>
+        <span class="sahwrap-label">Paste Chat Interaction</span>
+        <textarea id="chatInput" class="sahwrap-textarea" placeholder="Paste the customer's chat or query here..."></textarea>
+        
+        <button class="sahwrap-btn-action" id="kiroBtn" onclick="generateKiro()">Generate Notes</button>
+        
+        <div id="aiLoading" style="color: #00e676; font-style: italic; font-weight: 700; font-size: 14px; display: none; margin-bottom: 20px; text-align: center;">Analyzing chat context...</div>
+        <div id="aiOutput" class="sahwrap-output"></div>
+        
+        <button class="sahwrap-btn-copy" id="copyAiBtn" onclick="copyAiText()">Copy Notes</button>
+        <div class="sahwrap-reset" onclick="resetAIUI()">Clear & Reset</div>
       </div>
     </div>
 
@@ -457,6 +533,20 @@
 </div>
 
 <script>
+// =====================
+// THEME TOGGLE LOGIC
+// =====================
+function toggleTheme() {
+  const body = document.body;
+  body.classList.toggle('theme-dark');
+  const isDark = body.classList.contains('theme-dark');
+  const btn = document.getElementById('themeToggle');
+  btn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+}
+
+// Set Last Edited Date dynamically
+document.getElementById('lastEditedLabel').textContent = `Last edited: ${new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}`;
+
 // =====================
 // UNIVERSAL SPIELS
 // =====================
@@ -566,7 +656,7 @@ const factordeCancelDeadline = [
 ];
 const factordeAccountCancel = [
   { label: "Cancellation Request", tag: "close", text: `Thank you for reaching out. My name is [Name], and I am really sorry you want to cancel your account. We truly enjoyed having you as a customer! I will gladly help you with this and guide you step by step.\n\nYou can also cancel your account yourself at any time by logging into your account, going to Account Settings, and selecting the cancellation option. At Factor there is no contract, you are welcome to come back at any time. Would you like me to take care of this for you right now?` },
-  { label: "Retention Attempt", tag: "retention", text: `Before I continue, may I ask what led to this decision? I would really like to understand and see if we can find a solution together. Your feedback is very important to us.\n\nWe would really love to keep you, but I completely respect your decision. If you are open to it, your reason helps us improve for everyone.` },
+  { label: "Retention Attempt", tag: "retention", text: `Before I continue, may I ask what led you to this decision? I would really like to understand and see if we can find a solution together. Your feedback is very important to us.\n\nWe would really love to keep you, but I completely respect your decision. If you are open to it, your reason helps us improve for everyone.` },
   { label: "Acknowledge and Appreciate", tag: "empathy", text: `Thank you for being so open with me. I completely understand and really appreciate you sharing this with me.\n\nThat is completely understandable. Thank you for your honesty and for giving us your time.` },
   { label: "Confirmed No Upcoming Delivery", tag: "close", text: `We are very sorry to see you go and we hope to welcome you back one day! Your subscription has been cancelled and a confirmation email is already on the way. Please note, any active discounts have also been removed. Remember, there are no contracts at Factor. Whenever you want, simply log back in and reactivate your account. Thank you so much for being part of the Factor family!` },
   { label: "Confirmed With Upcoming Delivery", tag: "close", text: `We are really sorry to lose you and we thank you for the time you spent with us! Your subscription has been cancelled and a confirmation email is on the way. Your last delivery is still scheduled for [Date]. Keep an eye out for the tracking update the day before. If you want to come back at any time, just log in and click Reactivate. We are always happy to see you. Thank you for choosing Factor!` }
@@ -814,7 +904,6 @@ function switchRegion(code) {
   currentRegion = code;
   const root = document.documentElement;
   
-  // Set Region Colors dynamically
   root.style.setProperty('--theme-bg',     `var(--${code}-bg)`);
   root.style.setProperty('--theme-border', `var(--${code}-border)`);
   root.style.setProperty('--theme-light',  `var(--${code}-light)`);
@@ -1067,8 +1156,8 @@ function copyAiText() {
   btn.style.background = "#059669";
   btn.style.color = "#ffffff";
   setTimeout(() => { 
-    btn.innerText = "Grab My Notes! 💖"; 
-    btn.style.background = "transparent";
+    btn.innerText = "Copy Notes"; 
+    btn.style.background = "var(--white)";
     btn.style.color = "var(--sahwrap-border)";
   }, 2000);
 }
@@ -1116,8 +1205,7 @@ setInterval(nextQuote, 8000);
 const worldClocks = [
   { id: 'clock-ph', tz: 'Asia/Manila' }, { id: 'clock-de', tz: 'Europe/Berlin' },
   { id: 'clock-dk', tz: 'Europe/Copenhagen' }, { id: 'clock-se', tz: 'Europe/Stockholm' },
-  { id: 'clock-nl', tz: 'Europe/Amsterdam' }, { id: 'clock-be', tz: 'Europe/Brussels' },
-  { id: 'clock-at', tz: 'Europe/Vienna' }
+  { id: 'clock-nl', tz: 'Europe/Amsterdam' }
 ];
 
 const tabClocks = [
