@@ -174,6 +174,7 @@
   
   .copyBtn { position: absolute; top: 20px; right: 24px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
   .copyBtn:hover { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+  .copyBtn.copied { background: #10b981; color: #fff; border-color: #10b981; }
   
   .searchBar { display: flex; align-items: center; gap: 12px; padding: 24px 36px; background: var(--bg-main); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
   .searchBar input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; font-size: 15px; font-family: inherit; background: var(--bg-card); color: var(--text-main); outline: none; transition: all 0.2s ease; }
@@ -193,7 +194,7 @@
   
   .sahwrap-output { background: var(--bg-main); border: 1px solid var(--accent); border-radius: 8px; padding: 16px; text-align: left; font-size: 14px; color: var(--text-main); white-space: pre-wrap; display: none; line-height: 1.6; font-weight: 500; }
   
-  .sahwrap-btn-copy { background: transparent; color: var(--accent); border: 2px solid var(--accent); font-weight: 700; font-size: 14px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; display: none; align-items: center; justify-content: center; }
+  .sahwrap-btn-copy { background: transparent; color: var(--accent); border: 2px solid var(--accent); font-weight: 700; font-size: 14px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; align-items: center; justify-content: center; }
   .sahwrap-btn-copy:hover { background: var(--accent); color: white; }
   
   .sahwrap-reset { color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: color 0.2s ease, border-color 0.2s ease; }
@@ -294,7 +295,7 @@
         <div style="display: flex; gap: 20px; align-items: stretch; flex-wrap: wrap;">
           
           <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 12px;">
-            <textarea id="chatInput" class="sahwrap-textarea" style="height: 120px; margin-bottom: 0;" placeholder="Paste the customer's chat or query here..."></textarea>
+            <textarea id="chatInput" class="sahwrap-textarea" style="height: 250px; margin-bottom: 0;" placeholder="Paste the customer's chat or query here..."></textarea>
             <div style="display: flex; gap: 12px;">
               <button class="sahwrap-btn-action" id="kiroBtn" style="margin-bottom: 0; flex: 2; border-radius: 8px; padding: 12px;" onclick="generateKiro()">Generate Notes</button>
               <button class="sahwrap-reset" style="margin-bottom: 0; flex: 1; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-main); padding: 12px;" onclick="resetAIUI()">Clear</button>
@@ -302,9 +303,9 @@
           </div>
 
           <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 12px;">
-            <div id="aiLoading" style="color: var(--accent); font-style: italic; font-weight: 700; font-size: 14px; display: none; padding: 16px; border: 1px dashed var(--accent); border-radius: 8px; text-align: center; height: 120px; align-content: center;">Scanning chat for keywords... 🔍</div>
+            <div id="aiLoading" style="color: var(--accent); font-style: italic; font-weight: 700; font-size: 14px; display: none; padding: 16px; border: 1px dashed var(--accent); border-radius: 8px; text-align: center; height: 250px; align-content: center;">Scanning chat for keywords... 🔍</div>
             
-            <div id="aiOutput" class="sahwrap-output" style="margin-bottom: 0; height: 120px; overflow-y: auto;"></div>
+            <div id="aiOutput" class="sahwrap-output" style="margin-bottom: 0; height: 250px; overflow-y: auto;"></div>
             
             <button class="sahwrap-btn-copy" id="copyAiBtn" style="margin-bottom: 0; border-radius: 8px; padding: 12px;" onclick="copyAiText()">Copy Notes</button>
           </div>
@@ -848,7 +849,7 @@ const smartRules = [
   },
   {
     anyOf: ["missing", "left out", "forgot", "didn't get", "not in box"],
-    allOf: [], noneOf: ["box", "delivery", "recipe"], // Excludes missing entire boxes
+    allOf: [], noneOf: ["box", "delivery", "recipe"], 
     code: "13. Complaint-Pick & Pack", k: "Missing", i: "Customer reported missing ingredients or meal", r: "Added appropriate credit for missing items and reported to Pick & Pack."
   },
   {
@@ -919,14 +920,14 @@ const smartRules = [
 ];
 
 function generateKiro() {
-  const input = document.getElementById('chatInput').value.toLowerCase();
+  const input = document.getElementById('chatInput').value;
   const out = document.getElementById('aiOutput');
   
   if (!input.trim()) return;
   
   out.style.display = 'none';
   document.getElementById('copyAiBtn').style.display = 'none';
-  document.getElementById('aiLoading').style.display = 'block';
+  document.getElementById('aiLoading').style.display = 'flex';
   document.getElementById('kiroBtn').disabled = true;
   
   setTimeout(() => {
@@ -936,11 +937,16 @@ function generateKiro() {
     let matchedI = "General customer inquiry";
     let matchedR = "Assisted customer and answered questions regarding account.";
 
-    // Run the text through the Smart Rules Engine
+    // Smart logic checking for exact whole words
+    const containsWord = (word) => {
+        const regex = new RegExp('\\b' + word.replace(/'/g, "\\'") + '\\b', 'i');
+        return regex.test(input);
+    };
+
     for (let rule of smartRules) {
-      let hasAny = rule.anyOf.length === 0 || rule.anyOf.some(word => input.includes(word));
-      let hasAll = rule.allOf.length === 0 || rule.allOf.every(word => input.includes(word));
-      let hasNone = rule.noneOf.length === 0 || rule.noneOf.every(word => !input.includes(word));
+      let hasAny = rule.anyOf.length === 0 || rule.anyOf.some(containsWord);
+      let hasAll = rule.allOf.length === 0 || rule.allOf.every(containsWord);
+      let hasNone = rule.noneOf.length === 0 || rule.noneOf.every(word => !containsWord(word));
 
       if (hasAny && hasAll && hasNone) {
         matchedCode = rule.code;
