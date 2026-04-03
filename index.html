@@ -9,452 +9,229 @@
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 <style>
+  /* =========================================
+     BULLETPROOF COLOR SCHEME (LIGHT & DARK)
+     ========================================= */
   :root {
-    /* Professional Muted UI Palette for main app */
-    --gray-bg: #f8f9fa;
-    --gray-border: #e5e7eb;
-    --gray-text: #6b7280;
-    --gray-light: #f3f4f6;
-    --white: #ffffff;
-    --black: #1f2937;
-
-    --theme-bg: #e2e8f0;
-    --theme-border: #cbd5e1;
-    --theme-light: #f8fafc;
-    --theme-text: #475569;
-
-    --smesarah-bg: #fce7f3;
-    --smesarah-light: #fdf2f8;
-    --smesarah-border: #fbcfe8;
-    --smesarah-text: #be185d;
-
-    --nordics-bg: #e0f2fe;
-    --nordics-border: #bae6fd;
-    --nordics-light: #f0f9ff;
-    --nordics-text: #0369a1;
-
-    --dach-bg: #fee2e2;
-    --dach-border: #fecaca;
-    --dach-light: #fef2f2;
-    --dach-text: #b91c1c;
-
-    --benelux-bg: #dcfce7;
-    --benelux-border: #bbf7d0;
-    --benelux-light: #f0fdf4;
-    --benelux-text: #15803d;
+    /* Base Light Mode */
+    --bg-main: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --bg-hover: #f3f4f6;
     
-    /* FACTOR DE: Muted charcoal with subtle red accent */
-    --factorde-bg: #374151;
-    --factorde-border: #991b1b;
-    --factorde-light: #4b5563;
-    --factorde-text: #fecaca;
-
-    /* FACTOR DK: Muted navy with subtle blue accent */
-    --factordk-bg: #1e3a8a;
-    --factordk-border: #3b82f6;
-    --factordk-light: #1e40af;
-    --factordk-text: #dbeafe;
-
-    /* FACTOR SE: Muted burgundy with subtle pink accent */
-    --factorse-bg: #831843;
-    --factorse-border: #f472b6;
-    --factorse-light: #9d174d;
-    --factorse-text: #fce7f3;
-    
-    /* SAHWRAP AI */
-    --sahwrap-bg: #ffcce0;
-    --sahwrap-border: #f472b6;
-    --sahwrap-light: #fcf4f7;
-    --sahwrap-text: #e11d48;
+    /* Default Accent (SME Sarah Pink) */
+    --accent: #ec4899;
   }
+
+  body.theme-dark {
+    /* Base Dark Mode */
+    --bg-main: #0d1117;
+    --bg-card: #161b22;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border: #30363d;
+    --bg-hover: #21262d;
+  }
+
+  /* Region Specific Accents (Applied via JavaScript) */
+  body.region-smesarah { --accent: #ec4899; } /* Pink */
+  body.region-nordics { --accent: #3b82f6; }  /* Blue */
+  body.region-dach { --accent: #ef4444; }     /* Red */
+  body.region-benelux { --accent: #10b981; }  /* Green */
+  body.region-factorde { --accent: #f59e0b; } /* Amber */
+  body.region-factordk { --accent: #8b5cf6; } /* Purple */
+  body.region-factorse { --accent: #d946ef; } /* Fuchsia */
+  body.region-sahwrap { --accent: #14b8a6; }  /* Teal for AI Tool */
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'Public Sans', system-ui, sans-serif;
-    background: var(--gray-bg);
-    color: var(--black);
+    background: var(--bg-main);
+    color: var(--text-main);
     font-size: 14px;
     min-height: 100vh;
-    position: relative;
     transition: background 0.3s ease, color 0.3s ease;
   }
 
+  /* Header */
   .header {
-    background: var(--theme-bg);
-    color: var(--theme-text);
+    background: var(--bg-card);
     padding: 18px 30px 0;
-    border-bottom: 4px solid var(--theme-border);
-    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
-    position: relative;
+    border-bottom: 4px solid var(--accent);
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
-  .headerTop {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
+  .headerTop { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  
   .logo {
-    background: var(--white);
-    color: var(--theme-text);
+    background: var(--bg-main);
+    color: var(--text-main);
     font-weight: 700;
     font-size: 16px;
     letter-spacing: 2px;
     padding: 8px 18px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: color 0.4s ease;
-    text-transform: uppercase;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
   }
-  .headerTitle {
-    font-size: 17px;
-    font-weight: 600;
-  }
-  .headerSub {
-    font-size: 13.5px;
-    margin-left: auto;
-    color: var(--theme-text);
-    font-weight: 500;
-    opacity: 0.85;
-    display: flex;
-    align-items: center;
-  }
-  .headerSub .sep {
-    opacity: 0.4;
-    margin: 0 8px;
-  }
-  
-  /* Last Edited Label */
-  .lastEdited {
-    font-size: 11.5px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: rgba(255,255,255,0.5);
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: var(--theme-text);
-  }
+  .headerTitle { font-size: 17px; font-weight: 600; color: var(--text-main); }
+  .headerSub { font-size: 13.5px; margin-left: auto; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; }
+  .headerSub .sep { opacity: 0.4; margin: 0 8px; }
+  .lastEdited { font-size: 11.5px; font-weight: 600; text-transform: uppercase; background: var(--bg-hover); padding: 4px 10px; border-radius: 4px; color: var(--text-main); }
 
   .themeToggleBtn {
-    background: var(--white);
-    color: var(--theme-text);
-    border: 1px solid var(--theme-border);
+    background: var(--bg-main);
+    color: var(--text-main);
+    border: 1px solid var(--border);
     padding: 6px 12px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     margin-left: 16px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    transition: all 0.2s ease;
   }
-  .themeToggleBtn:hover {
-    background: var(--theme-light);
-  }
+  .themeToggleBtn:hover { background: var(--bg-hover); border-color: var(--accent); }
 
-  .countryTabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
+  /* Tabs */
+  .countryTabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .ctab {
     padding: 12px 20px;
     border-radius: 12px 12px 0 0;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    border: none;
+    border: 1px solid transparent;
     border-bottom: none;
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.3);
-    color: var(--theme-text);
+    background: transparent;
+    color: var(--text-muted);
     font-family: inherit;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
-  .ctab:hover { background: rgba(255,255,255,0.4); }
+  .ctab:hover { color: var(--text-main); background: var(--bg-hover); }
   .ctab.active {
-    background: var(--white);
-    color: var(--theme-text);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
   }
-
-  /* DARK MODE OVERRIDES */
-  body.theme-dark {
-    --gray-bg: #0d1117;
-    --gray-border: #30363d;
-    --gray-text: #8b949e;
-    --gray-light: #21262d;
-    --white: #161b22;
-    --black: #c9d1d9;
-
-    --smesarah-bg: #381124;      
-    --smesarah-light: #1f0a14;   
-    --smesarah-border: #f472b6;  
-    --smesarah-text: #fce7f3;    
-
-    --nordics-bg: #0f1c3f;
-    --nordics-light: #060e24;
-    --nordics-border: #60a5fa;
-    --nordics-text: #dbeafe;
-
-    --dach-bg: #3d1414;
-    --dach-light: #200808;
-    --dach-border: #f87171;
-    --dach-text: #fee2e2;
-
-    --benelux-bg: #0d3826;
-    --benelux-light: #051a11;
-    --benelux-border: #34d399;
-    --benelux-text: #d1fae5;
-    
-    --factorde-bg: #212121;
-    --factorde-light: #141414;
-    --factorde-border: #ef4444;
-    --factorde-text: #f3f4f6;
-
-    --factordk-bg: #1e1b4b;
-    --factordk-light: #0f0b29;
-    --factordk-border: #818cf8;
-    --factordk-text: #e0e7ff;
-
-    --factorse-bg: #4a1029;
-    --factorse-light: #250814;
-    --factorse-border: #e879f9;
-    --factorse-text: #fae8ff;
-    
-    --sahwrap-bg: #2e1065;
-    --sahwrap-light: #170833;
-    --sahwrap-border: #a855f7;
-    --sahwrap-text: #ede9fe;
-  }
-
-  body.theme-dark .header { color: #ffffff; }
-  body.theme-dark .headerTitle { color: #ffffff; }
-  body.theme-dark .headerSub { color: rgba(255,255,255,0.85); }
-  body.theme-dark .lastEdited { background: rgba(0,0,0,0.2); color: rgba(255,255,255,0.9); }
-  body.theme-dark .themeToggleBtn { background: rgba(0,0,0,0.2); color: #ffffff; border-color: rgba(255,255,255,0.2); }
-  body.theme-dark .themeToggleBtn:hover { background: rgba(0,0,0,0.4); }
-  body.theme-dark .ctab { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
-  body.theme-dark .ctab:hover { background: rgba(255,255,255,0.2); color: #ffffff; }
-  body.theme-dark .ctab.active { background: var(--gray-bg); color: var(--theme-border); box-shadow: none; border: 2px solid var(--theme-border); border-bottom: none; }
-  body.theme-dark .logo { color: var(--theme-border); }
-  body.theme-dark .barTitle { color: var(--theme-border); }
-  body.theme-dark .policyBar { background: var(--gray-bg); border-bottom-color: var(--gray-border); }
-  body.theme-dark .policyCell { background: var(--white); border-color: var(--gray-border); }
-  body.theme-dark .policyCell:hover { border-color: var(--theme-border); box-shadow: none; }
-  body.theme-dark .policyLabel { color: var(--gray-text); }
-  body.theme-dark .policyValue { color: var(--black); }
-  body.theme-dark .policyNote { background: var(--theme-light); border-left-color: var(--theme-border); color: var(--black); }
-  body.theme-dark .sidebarItem.active { background: var(--theme-light); border-left-color: var(--theme-border); color: var(--theme-border); }
-  body.theme-dark .sidebarItem:hover { background: var(--gray-light); color: var(--theme-border); }
-  body.theme-dark .sectionHeader .icon { background: var(--theme-light); color: var(--theme-border); }
-  body.theme-dark .tag { background: var(--theme-light); color: var(--theme-border); border: 1px solid var(--theme-border); }
-  body.theme-dark .spielCard:hover { border-color: var(--theme-border); box-shadow: none; }
-  body.theme-dark .searchBar { background: rgba(13, 17, 23, 0.95); }
-  body.theme-dark .searchBar input { background: var(--gray-light); border-color: var(--gray-border); color: var(--black); box-shadow: none; }
-  body.theme-dark .searchBar input:focus { border-color: var(--theme-border); box-shadow: 0 0 0 3px var(--theme-light); }
-  body.theme-dark .copyBtn { background: var(--gray-light); color: var(--gray-text); border-color: var(--gray-border); }
-  body.theme-dark .copyBtn:hover { background: var(--theme-border); border-color: var(--theme-border); color: #111827; }
-  body.theme-dark .affirmationBanner { background: var(--white); border-color: var(--gray-border); }
-  body.theme-dark .affirmationHighlight { background: var(--theme-light); color: var(--theme-border); border-color: var(--theme-border); }
-  body.theme-dark .affirmationNavBtn { background: var(--gray-light); color: var(--gray-text); border-color: var(--gray-border); }
-  body.theme-dark .affirmationNavBtn:hover { background: var(--theme-border); color: #111827; }
-
-  .main {
-    display: flex;
-    height: calc(100vh - 105px);
-    overflow: hidden;
-  }
-
-  .sidebar {
-    width: 260px;
-    min-width: 260px;
-    background: var(--white);
-    border-right: 1px solid var(--gray-border);
-    overflow-y: auto;
-    padding: 24px 0;
-    box-shadow: 2px 0 15px rgba(0,0,0,0.02);
-    z-index: 5;
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-  body.theme-dark .sidebar { box-shadow: none; }
-  
-  .sidebarSection {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--gray-text);
-    padding: 14px 24px 8px;
-    text-transform: uppercase;
-  }
-  .sidebarItem {
-    display: block;
-    padding: 12px 24px;
-    font-size: 14px;
-    cursor: pointer;
-    color: var(--black);
-    border-left: 4px solid transparent;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 500;
-  }
-  .sidebarItem:hover { background: var(--gray-light); color: var(--theme-text); }
-  .sidebarItem.active { background: var(--theme-light); border-left-color: var(--theme-border); color: var(--theme-text); font-weight: 700; }
-
-  .content { flex: 1; overflow-y: auto; padding: 0; background: var(--gray-bg); transition: background 0.3s ease; }
-
-  .policyBar { background: var(--gray-bg); border-bottom: 1px solid var(--gray-border); padding: 20px 24px; display: none; transition: background 0.3s ease, border-color 0.3s ease; }
-  .policyBar.active { display: block; }
-  .policyGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
-  .policyCell { background: var(--white); border-radius: 8px; padding: 16px; border: 1px solid var(--gray-border); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
-  .policyCell:hover { border-color: var(--theme-border); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-  .policyLabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-text); margin-bottom: 6px; }
-  .policyValue { font-size: 14px; font-weight: 600; color: var(--black); line-height: 1.5; }
-  .policyNote { font-size: 13px; color: var(--theme-text); margin-top: 20px; background: var(--theme-light); border-left: 4px solid var(--theme-border); padding: 12px 18px; border-radius: 0 8px 8px 0; font-weight: 500; transition: background 0.3s ease; }
-  .barTitle { font-size: 15px; font-weight: 700; color: var(--theme-text); text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
-
-  .panelWrap { padding: 32px 36px 80px; display: none; }
-  .panelWrap.active { display: block; }
-
-  .spielSection { margin-bottom: 24px; background: var(--white); border-radius: 10px; border: 1px solid var(--gray-border); box-shadow: 0 2px 12px rgba(0,0,0,0.02); overflow: hidden; transition: background 0.3s ease, border-color 0.3s ease; }
-  body.theme-dark .spielSection { box-shadow: none; }
-  
-  .sectionHeader { display: flex; align-items: center; gap: 16px; padding: 18px 24px; cursor: pointer; background: var(--white); margin-bottom: 0; transition: background 0.3s; }
-  .sectionHeader:hover { background: var(--gray-light); }
-  .sectionHeader .icon { width: 34px; height: 34px; border-radius: 8px; background: var(--theme-light); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--theme-text); flex-shrink: 0; transition: background 0.4s, color 0.4s; }
-  .sectionHeader h2 { font-size: 15px; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 1px; flex: 1; }
-  .sectionHeader .chevron { font-size: 12px; color: var(--gray-text); transition: transform 0.3s ease; }
-  .sectionHeader.open { border-bottom: 1px solid var(--gray-border); }
-  .sectionHeader.open .chevron { transform: rotate(180deg); }
-
-  .sectionBody { display: none; padding: 24px; gap: 16px; flex-direction: column; background: var(--gray-bg); transition: background 0.3s ease; }
-  .sectionBody.open { display: flex; }
-
-  .spielCard { background: var(--white); border: 1px solid var(--gray-border); border-radius: 8px; padding: 20px 24px; position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease; }
-  .spielCard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); border-color: var(--theme-border); }
-  .spielLabel { font-size: 11.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-text); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; background: var(--theme-light); color: var(--theme-text); }
-  .spielText { font-size: 14.5px; line-height: 1.7; color: var(--black); white-space: pre-wrap; padding-right: 70px; }
-  .placeholder { background: #f3f4f6; border-radius: 4px; padding: 2px 6px; font-weight: 600; font-style: normal; color: #4b5563; font-size: 13.5px; display: inline-block; border: 1px solid #e5e7eb; }
-  body.theme-dark .placeholder { background: var(--theme-light); border-color: var(--theme-border); color: var(--theme-border); }
-  
-  .copyBtn { position: absolute; top: 20px; right: 24px; background: var(--white); border: 1px solid var(--gray-border); border-radius: 6px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--gray-text); cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
-  .copyBtn:hover { background: var(--theme-light); border-color: var(--theme-border); color: var(--theme-text); }
-  .copyBtn.copied { background: var(--theme-text); color: var(--white); border-color: var(--theme-text); }
-  body.theme-dark .copyBtn.copied { background: #10b981; color: #fff; border-color: #10b981; }
-  
-  .searchBar { display: flex; align-items: center; gap: 12px; padding: 24px 36px; background: rgba(248,249,250,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-border); position: sticky; top: 0; z-index: 10; transition: background 0.3s ease, border-color 0.3s ease; }
-  .searchBar input { flex: 1; border: 1px solid var(--gray-border); border-radius: 8px; padding: 14px 20px; font-size: 15px; font-family: inherit; background: var(--white); color: var(--black); outline: none; transition: all 0.3s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
-  .searchBar input:focus { border-color: var(--theme-border); box-shadow: 0 0 0 3px var(--theme-light); }
-  .noResults { text-align: center; color: var(--gray-text); padding: 80px; font-size: 15px; display: none; font-weight: 500; }
-
-  /* SahWrap Generator Scoped CSS */
-  .sahwrap-wrapper { max-width: 650px; margin: 0 auto; font-family: 'Quicksand', sans-serif; background: #fcf4f7; padding: 24px; border-radius: 24px; border: 2px dashed #ffcce0; }
-  body.theme-dark .sahwrap-wrapper { background: transparent; border: none; padding: 24px; }
-  
-  .sahwrap-card { background: white; border: 3px solid #ffe4ed; border-radius: 20px; padding: 24px; text-align: center; box-shadow: 0 4px 15px rgba(255,192,203,0.2); }
-  body.theme-dark .sahwrap-card { background: var(--white); border: 1px solid var(--gray-border); border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-  
-  .sahwrap-title { color: #f472b6; font-size: 22px; font-weight: 700; margin-bottom: 5px; }
-  body.theme-dark .sahwrap-title { color: var(--sahwrap-border); letter-spacing: 0.5px; margin-bottom: 20px; }
-  
-  .sahwrap-label { color: #f472b6; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; text-align: left; display: block; }
-  body.theme-dark .sahwrap-label { color: var(--gray-text); }
-  
-  .sahwrap-textarea { width: 100%; box-sizing: border-box; background: #fff5f8; border: 2px solid #ffcce0; border-radius: 12px; padding: 16px; height: 140px; resize: none; font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 14px; color: #4b5563; outline: none; margin-bottom: 20px; transition: border-color 0.2s; }
-  body.theme-dark .sahwrap-textarea { background: var(--gray-bg); border: 1px solid var(--gray-border); color: var(--black); font-weight: 500; }
-  .sahwrap-textarea:focus { border-color: var(--sahwrap-border); background: var(--white); }
-  body.theme-dark .sahwrap-textarea:focus { background: var(--gray-light); }
-  
-  .sahwrap-btn-action { width: 100%; background: #00e676; color: white; border: none; border-radius: 20px; padding: 14px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; font-family: 'Quicksand', sans-serif; margin-bottom: 20px; }
-  body.theme-dark .sahwrap-btn-action { border-radius: 12px; background: #10b981; }
-  .sahwrap-btn-action:hover:not(:disabled) { background: #00c853; transform: scale(1.02); }
-  body.theme-dark .sahwrap-btn-action:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
-  .sahwrap-btn-action:disabled { background: #a7f3d0; cursor: not-allowed; }
-  body.theme-dark .sahwrap-btn-action:disabled { background: var(--gray-border); color: var(--gray-text); transform: none; box-shadow: none; }
-  
-  .sahwrap-output { background: #f0fdf4; border: 2px solid #00e676; border-radius: 12px; padding: 20px; text-align: left; font-size: 14px; color: #374151; white-space: pre-wrap; display: none; margin-bottom: 20px; line-height: 1.6; font-weight: 600; }
-  body.theme-dark .sahwrap-output { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 14.5px; color: var(--black); font-weight: 500; }
-  
-  .sahwrap-btn-copy { width: 100%; background: #ffcce0; color: #e11d48; border: none; border-radius: 20px; padding: 14px; font-weight: 700; font-size: 15px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; }
-  body.theme-dark .sahwrap-btn-copy { background: transparent; color: var(--sahwrap-border); border: 1px solid var(--sahwrap-border); border-radius: 12px; }
-  .sahwrap-btn-copy:hover { background: #f472b6; color: white; }
-  body.theme-dark .sahwrap-btn-copy:hover { background: var(--sahwrap-border); color: #fff; }
-  
-  .sahwrap-reset { color: #f472b6; font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; display: inline-block; transition: color 0.2s ease; }
-  body.theme-dark .sahwrap-reset { color: var(--gray-text); }
-  body.theme-dark .sahwrap-reset:hover { color: var(--black); }
-
-  /* Tab local time display */
-  .ctabTime { font-size: 10px; font-weight: 600; opacity: 0.7; letter-spacing: 0; display: block; line-height: 1.2; margin-top: 1px; }
+  .ctabTime { font-size: 10px; font-weight: 600; opacity: 0.8; display: block; line-height: 1.2; margin-top: 1px; }
   .ctab { flex-direction: column; align-items: flex-start; padding: 10px 18px; }
   .ctabLabel { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
 
-  /* Affirmation Banner */
-  .affirmationBanner { margin-top: 24px; background: var(--white); border: 1px solid var(--gray-border); border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: background 0.3s, border-color 0.3s; }
-  .affirmationBannerTitle { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray-text); display: flex; align-items: center; gap: 8px; }
-  .affirmationRotate { display: flex; align-items: center; gap: 12px; }
-  .affirmationHighlight { flex: 1; background: var(--theme-light); border: 1px solid var(--theme-border); border-radius: 8px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--theme-text); text-align: center; letter-spacing: 0.2px; line-height: 1.5; animation: fadeQuote 0.8s ease; transition: background 0.3s, border-color 0.3s, color 0.3s; }
-  .affirmationNavBtn { background: var(--white); border: 1px solid var(--gray-border); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: var(--gray-text); flex-shrink: 0; transition: background 0.2s, border-color 0.2s, color 0.2s; font-family: inherit; }
-  .affirmationNavBtn:hover { background: var(--gray-light); color: var(--black); }
+  /* Main Layout */
+  .main { display: flex; height: calc(100vh - 105px); overflow: hidden; }
+
+  /* Sidebar */
+  .sidebar { width: 260px; min-width: 260px; background: var(--bg-card); border-right: 1px solid var(--border); overflow-y: auto; padding: 24px 0; transition: background 0.3s ease; }
+  .sidebarSection { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--text-muted); padding: 14px 24px 8px; text-transform: uppercase; }
+  .sidebarItem { display: block; padding: 12px 24px; font-size: 14px; cursor: pointer; color: var(--text-main); border-left: 4px solid transparent; transition: all 0.2s ease; font-weight: 500; }
+  .sidebarItem:hover { background: var(--bg-hover); color: var(--accent); }
+  .sidebarItem.active { background: var(--bg-hover); border-left-color: var(--accent); color: var(--accent); font-weight: 700; }
+
+  /* Content Area */
+  .content { flex: 1; overflow-y: auto; padding: 0; background: var(--bg-main); transition: background 0.3s ease; }
+
+  /* Policy Bars */
+  .policyBar { background: var(--bg-main); border-bottom: 1px solid var(--border); padding: 20px 24px; display: none; }
+  .policyBar.active { display: block; }
+  .policyGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+  .policyCell { background: var(--bg-card); border-radius: 8px; padding: 16px; border: 1px solid var(--border); transition: border-color 0.2s; }
+  .policyCell:hover { border-color: var(--accent); }
+  .policyLabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; }
+  .policyValue { font-size: 14px; font-weight: 600; color: var(--text-main); line-height: 1.5; }
+  .policyNote { font-size: 13px; color: var(--text-main); margin-top: 20px; background: var(--bg-card); border-left: 4px solid var(--accent); padding: 12px 18px; border-radius: 0 8px 8px 0; font-weight: 500; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .barTitle { font-size: 15px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 10px; }
+
+  /* Panels */
+  .panelWrap { padding: 32px 36px 80px; display: none; }
+  .panelWrap.active { display: block; }
+
+  .spielSection { margin-bottom: 24px; background: var(--bg-card); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; transition: background 0.3s ease; }
+  .sectionHeader { display: flex; align-items: center; gap: 16px; padding: 18px 24px; cursor: pointer; margin-bottom: 0; transition: background 0.2s; }
+  .sectionHeader:hover { background: var(--bg-hover); }
+  .sectionHeader .icon { width: 34px; height: 34px; border-radius: 8px; background: var(--bg-hover); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--accent); flex-shrink: 0; }
+  .sectionHeader h2 { font-size: 15px; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; flex: 1; }
+  .sectionHeader .chevron { font-size: 12px; color: var(--text-muted); transition: transform 0.3s ease; }
+  .sectionHeader.open { border-bottom: 1px solid var(--border); }
+  .sectionHeader.open .chevron { transform: rotate(180deg); }
+
+  .sectionBody { display: none; padding: 24px; gap: 16px; flex-direction: column; background: var(--bg-main); border-top: 1px solid var(--border); }
+  .sectionBody.open { display: flex; }
+
+  .spielCard { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; position: relative; transition: transform 0.2s ease, border-color 0.2s ease; }
+  .spielCard:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .spielLabel { font-size: 11.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; background: var(--bg-hover); color: var(--accent); border: 1px solid var(--border); }
+  .spielText { font-size: 14.5px; line-height: 1.7; color: var(--text-main); white-space: pre-wrap; padding-right: 70px; }
+  .placeholder { background: var(--bg-hover); border-radius: 4px; padding: 2px 6px; font-weight: 600; font-style: normal; color: var(--accent); font-size: 13.5px; display: inline-block; border: 1px solid var(--border); }
   
-  /* 5-Box Grid Layout (4 Trays + 1 Unified Clock) */
+  .copyBtn { position: absolute; top: 20px; right: 24px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
+  .copyBtn:hover { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+  .copyBtn.copied { background: #10b981; color: #fff; border-color: #10b981; }
+  
+  .searchBar { display: flex; align-items: center; gap: 12px; padding: 24px 36px; background: var(--bg-main); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+  .searchBar input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; font-size: 15px; font-family: inherit; background: var(--bg-card); color: var(--text-main); outline: none; transition: all 0.2s ease; }
+  .searchBar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--bg-hover); }
+  .noResults { text-align: center; color: var(--text-muted); padding: 80px; font-size: 15px; display: none; font-weight: 500; }
+
+  /* KIRO Tool CSS */
+  .sahwrap-wrapper { max-width: 650px; margin: 0 auto; font-family: 'Quicksand', sans-serif; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+  .sahwrap-title { color: var(--accent); font-size: 22px; font-weight: 700; margin-bottom: 24px; text-align: center; letter-spacing: 0.5px; }
+  .sahwrap-label { color: var(--text-muted); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .sahwrap-textarea { width: 100%; box-sizing: border-box; background: var(--bg-main); border: 1px solid var(--border); border-radius: 12px; padding: 16px; height: 160px; resize: none; font-family: 'Quicksand', sans-serif; font-weight: 500; font-size: 14px; color: var(--text-main); outline: none; margin-bottom: 20px; transition: border-color 0.2s; }
+  .sahwrap-textarea:focus { border-color: var(--accent); background: var(--bg-card); }
+  
+  .sahwrap-btn-action { width: 100%; background: var(--accent); color: white; border: none; border-radius: 12px; padding: 14px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; font-family: 'Quicksand', sans-serif; margin-bottom: 20px; }
+  .sahwrap-btn-action:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2); opacity: 0.9; }
+  .sahwrap-btn-action:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; transform: none; box-shadow: none; }
+  
+  .sahwrap-output { background: var(--bg-main); border: 1px solid var(--accent); border-radius: 12px; padding: 20px; text-align: left; font-size: 14.5px; color: var(--text-main); white-space: pre-wrap; display: none; margin-bottom: 20px; line-height: 1.6; font-weight: 500; }
+  .sahwrap-btn-copy { width: 100%; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 12px; padding: 14px; font-weight: 700; font-size: 15px; cursor: pointer; display: none; transition: 0.2s; font-family: 'Quicksand', sans-serif; }
+  .sahwrap-btn-copy:hover { background: var(--accent); color: white; }
+  
+  .sahwrap-reset { color: var(--text-muted); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; display: inline-block; transition: color 0.2s ease; text-align: center; width: 100%; }
+  .sahwrap-reset:hover { color: var(--text-main); }
+
+  /* 5-Box Grid Layout */
   .smeBoxGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 8px; }
+  .smeBox { background: var(--bg-card); border-radius: 8px; padding: 18px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s ease, border-color 0.2s ease; min-height: 140px; }
+  .smeBox:hover { transform: translateY(-2px); border-color: var(--accent); }
   
-  /* Ensure all 5 boxes share exact dimensions and styling */
-  .smeBox { 
-    background: var(--white);
-    border-radius: 8px; 
-    padding: 18px; 
-    border: 1px solid var(--gray-border); 
-    display: flex; 
-    flex-direction: column; 
-    gap: 12px; 
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease;
-    min-height: 140px; /* Force consistent height */
-  }
-  .smeBox:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.04); border-color: var(--theme-border); }
-  
-  /* Muted Color Accents for Boxes */
-  .smeBox-affirm  { border-top: 3px solid #6366f1; }
+  .smeBox-affirm  { border-top: 3px solid #8b5cf6; }
   .smeBox-mindset { border-top: 3px solid #ec4899; }
   .smeBox-reminder{ border-top: 3px solid #10b981; }
   .smeBox-tip     { border-top: 3px solid #f59e0b; }
   .smeBox-clock   { border-top: 3px solid #3b82f6; }
 
-  /* Dark mode specific top borders */
-  body.theme-dark .smeBox-affirm  { border-top: 3px solid #818cf8; }
-  body.theme-dark .smeBox-mindset { border-top: 3px solid #f472b6; }
-  body.theme-dark .smeBox-reminder{ border-top: 3px solid #34d399; }
-  body.theme-dark .smeBox-tip     { border-top: 3px solid #fbbf24; }
-  body.theme-dark .smeBox-clock   { border-top: 3px solid #60a5fa; }
-
   @media (max-width: 1400px) { .smeBoxGrid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 900px) { .smeBoxGrid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .smeBoxGrid { grid-template-columns: 1fr; } }
 
-  .smeBoxLabel { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-text); display: flex; align-items: center; gap: 6px; }
-  .smeBoxText { font-size: 13.5px; line-height: 1.6; color: var(--black); font-weight: 500; flex: 1; }
+  .smeBoxLabel { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+  .smeBoxText { font-size: 13.5px; line-height: 1.6; color: var(--text-main); font-weight: 500; flex: 1; }
 
-  /* Unified World Clock Internal Layout */
+  /* Unified World Clock */
   .clockContainer { display: flex; flex-direction: column; gap: 6px; flex: 1; justify-content: center; }
-  .clockRow { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--gray-border); padding-bottom: 4px; margin-bottom: 2px; transition: border-color 0.3s; }
+  .clockRow { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--border); padding-bottom: 4px; margin-bottom: 2px; }
   .clockRow:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .clockInitials { font-size: 11px; font-weight: 700; color: var(--gray-text); width: 30px; }
-  .clockTime { font-size: 13.5px; font-weight: 600; color: var(--black); font-variant-numeric: tabular-nums; letter-spacing: 0.5px; text-align: right; }
-  body.theme-dark .clockTime { color: var(--theme-border); }
+  .clockInitials { font-size: 11px; font-weight: 700; color: var(--text-muted); width: 30px; }
+  .clockTime { font-size: 13.5px; font-weight: 600; color: var(--text-main); font-variant-numeric: tabular-nums; letter-spacing: 0.5px; text-align: right; }
+  
+  /* Affirmation Banner */
+  .affirmationBanner { margin-top: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .affirmationBannerTitle { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .affirmationRotate { display: flex; align-items: center; gap: 12px; }
+  .affirmationHighlight { flex: 1; background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--accent); text-align: center; letter-spacing: 0.2px; line-height: 1.5; animation: fadeQuote 0.8s ease; }
+  .affirmationNavBtn { background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); transition: all 0.2s ease; }
+  .affirmationNavBtn:hover { background: var(--accent); color: white; border-color: var(--accent); }
 </style>
 </head>
-<body class="theme-dark">
+<body class="theme-dark region-smesarah">
 
 <div class="header">
   <div class="headerTop">
@@ -473,7 +250,7 @@
     <button class="ctab" data-region="factorde" onclick="switchRegion('factorde')"><span class="ctabLabel">FACTOR DE</span><span class="ctabTime" id="tab-time-factorde"></span></button>
     <button class="ctab" data-region="factordk" onclick="switchRegion('factordk')"><span class="ctabLabel">FACTOR DK</span><span class="ctabTime" id="tab-time-factordk"></span></button>
     <button class="ctab" data-region="factorse" onclick="switchRegion('factorse')"><span class="ctabLabel">FACTOR SE</span><span class="ctabTime" id="tab-time-factorse"></span></button>
-    <button class="ctab" style="margin-left: 12px; border-left: 1px solid rgba(128,128,128,0.2);" data-region="sahwrap" onclick="switchRegion('sahwrap')"><span class="ctabLabel">✨ KIRO AI</span><span class="ctabTime">Generator</span></button>
+    <button class="ctab" style="margin-left: 12px; border-left: 1px solid var(--border);" data-region="sahwrap" onclick="switchRegion('sahwrap')"><span class="ctabLabel">✨ KIRO AI</span><span class="ctabTime">Generator</span></button>
   </div>
 </div>
 
@@ -490,29 +267,11 @@
           <div class="affirmationHighlight" id="affirmationQuote"></div>
           <button class="affirmationNavBtn" onclick="nextQuote()">&#8594;</button>
         </div>
-        
         <div class="smeBoxGrid">
-          
-          <div class="smeBox smeBox-affirm">
-            <div class="smeBoxLabel">✦ Affirmation</div>
-            <div class="smeBoxText">I am calm, I am capable, and I handle every case with care. I know my spiels. I know my policies. I am prepared.</div>
-          </div>
-          
-          <div class="smeBox smeBox-mindset">
-            <div class="smeBoxLabel">🧠 Mindset</div>
-            <div class="smeBoxText">A frustrated customer does not mean a bad day. It means someone needs your help. You cannot control their mood, but you control your response.</div>
-          </div>
-          
-          <div class="smeBox smeBox-reminder">
-            <div class="smeBoxLabel">📌 Reminder</div>
-            <div class="smeBoxText">Check the account before quoting anything. Every time, no exceptions. Policy is your protection, not your enemy. Use it with confidence.</div>
-          </div>
-          
-          <div class="smeBox smeBox-tip">
-            <div class="smeBoxLabel">💡 SME Tip</div>
-            <div class="smeBoxText">Empathy opens doors. Policy closes cases. Use both. If the deadline has passed, escalate with kindness, not apologies for the policy.</div>
-          </div>
-          
+          <div class="smeBox smeBox-affirm"><div class="smeBoxLabel">✦ Affirmation</div><div class="smeBoxText">I am calm, I am capable, and I handle every case with care. I know my spiels. I know my policies. I am prepared.</div></div>
+          <div class="smeBox smeBox-mindset"><div class="smeBoxLabel">🧠 Mindset</div><div class="smeBoxText">A frustrated customer does not mean a bad day. It means someone needs your help. You cannot control their mood, but you control your response.</div></div>
+          <div class="smeBox smeBox-reminder"><div class="smeBoxLabel">📌 Reminder</div><div class="smeBoxText">Check the account before quoting anything. Every time, no exceptions. Policy is your protection, not your enemy. Use it with confidence.</div></div>
+          <div class="smeBox smeBox-tip"><div class="smeBoxLabel">💡 SME Tip</div><div class="smeBoxText">Empathy opens doors. Policy closes cases. Use both. If the deadline has passed, escalate with kindness, not apologies for the policy.</div></div>
           <div class="smeBox smeBox-clock">
             <div class="smeBoxLabel">🌍 World Clock</div>
             <div class="clockContainer">
@@ -523,7 +282,6 @@
               <div class="clockRow"><span class="clockInitials">NL</span><span class="clockTime" id="clock-nl"></span></div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -535,15 +293,14 @@
     <div class="policyBar" id="policyFactordk"><div class="barTitle">FACTOR DENMARK Key Policy Reference</div><div class="policyGrid"><div class="policyCell"><div class="policyLabel">Website</div><div class="policyValue">factormeals.dk</div></div><div class="policyCell"><div class="policyLabel">Currency</div><div class="policyValue">DKK</div></div><div class="policyCell"><div class="policyLabel">Language</div><div class="policyValue">English (warm, direct)</div></div><div class="policyCell"><div class="policyLabel">Delivery Days</div><div class="policyValue">Check customer account</div></div><div class="policyCell"><div class="policyLabel">Order Deadline</div><div class="policyValue">Verify in account before quoting</div></div><div class="policyCell"><div class="policyLabel">Payment Methods</div><div class="policyValue">Klarna, Visa, Mastercard, PayPal</div></div><div class="policyCell"><div class="policyLabel">Refund Timeline</div><div class="policyValue">Up to 10 business days</div></div></div><div class="policyNote">📌 Danish customers tend to be direct and value transparency. Keep things honest and to the point. Always verify account details before quoting deadlines or charges.</div></div>
     <div class="policyBar" id="policyFactorse"><div class="barTitle">FACTOR SWEDEN Key Policy Reference</div><div class="policyGrid"><div class="policyCell"><div class="policyLabel">Website</div><div class="policyValue">factormeals.se</div></div><div class="policyCell"><div class="policyLabel">Currency</div><div class="policyValue">SEK</div></div><div class="policyCell"><div class="policyLabel">Language</div><div class="policyValue">English (calm, courteous)</div></div><div class="policyCell"><div class="policyLabel">Delivery Days</div><div class="policyValue">Check customer account</div></div><div class="policyCell"><div class="policyLabel">Order Deadline</div><div class="policyValue">Verify in account before quoting</div></div><div class="policyCell"><div class="policyLabel">Payment Methods</div><div class="policyValue">Klarna, Visa, Mastercard, PayPal</div></div><div class="policyCell"><div class="policyLabel">Refund Timeline</div><div class="policyValue">Up to 10 business days</div></div></div><div class="policyNote">📌 Swedish customers appreciate calm, structured communication. Be clear about processes. Always check the individual account before referencing any deadlines, charges, or plans.</div></div>
     
-    <div class="policyBar" id="policySahwrap" style="background: var(--sahwrap-light); border-bottom-color: var(--sahwrap-border);">
-      <div class="barTitle" style="color: var(--sahwrap-text);">🤖 KIRO Note Generator</div>
-      <div class="policyNote" style="background: var(--white); border-left-color: var(--sahwrap-border); color: var(--sahwrap-text);">📌 Paste your raw customer chat below to instantly generate a KIRO note based on matching keywords.</div>
+    <div class="policyBar" id="policySahwrap">
+      <div class="barTitle">🤖 KIRO Note Generator</div>
+      <div class="policyNote">📌 Paste your raw customer chat below to instantly generate a KIRO note based on offline keyword scanning. No API key needed!</div>
     </div>
 
     <div class="searchBar" id="mainSearchBar">
       <input type="text" id="searchInput" placeholder="Search spiels" oninput="filterSpiels()"/>
     </div>
-
     <div id="noResults" class="noResults">No matching spiels found.</div>
 
     <div class="panelWrap active" id="panelSmesarah"></div>
@@ -556,13 +313,13 @@
     
     <div class="panelWrap" id="panelSahwrap">
       <div class="sahwrap-wrapper">
-        <div class="sahwrap-title">✨ KIRO Generator (Offline Mode)</div>
+        <div class="sahwrap-title">✨ Offline KIRO Generator</div>
         <span class="sahwrap-label">Paste Chat Interaction</span>
         <textarea id="chatInput" class="sahwrap-textarea" placeholder="Paste the customer's chat or query here..."></textarea>
         
         <button class="sahwrap-btn-action" id="kiroBtn" onclick="generateKiro()">Generate Notes</button>
         
-        <div id="aiLoading" style="color: #00e676; font-style: italic; font-weight: 700; font-size: 14px; display: none; margin-bottom: 20px; text-align: center;">Scanning chat for keywords... 🔍</div>
+        <div id="aiLoading" style="color: var(--accent); font-style: italic; font-weight: 700; font-size: 14px; display: none; margin-bottom: 20px; text-align: center;">Scanning chat for keywords... 🔍</div>
         <div id="aiOutput" class="sahwrap-output"></div>
         
         <button class="sahwrap-btn-copy" id="copyAiBtn" onclick="copyAiText()">Copy Notes</button>
@@ -588,11 +345,10 @@ function toggleTheme() {
   btn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
 }
 
-// Set Last Edited Date dynamically
 document.getElementById('lastEditedLabel').textContent = `Last edited: ${new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}`;
 
 // =====================
-// UNIVERSAL SPIELS
+// SPIEL DATA
 // =====================
 const universalOpening = [
   { label: "No Context", tag: "greeting", text: `Hi there, welcome to HelloFresh! I am [Name], great to have you with us. I can see you are reaching out about your [subscription / delivery / payment / account / meals]. Could you tell me a bit more about what you need help with today?` }
@@ -630,9 +386,6 @@ const universalClosing = [
   { label: "Survey Unresolved", tag: "close", text: `We are really sorry we could not fully resolve your concern today, but thank you for your patience and for giving us the chance to assist you.\n\nYou may see a quick survey pop up about your experience. It only takes a few seconds to complete. The rating goes from 1 (not satisfied) to 5 (very satisfied), and your honest feedback helps us understand where we need to improve and do better next time.\n\nWe truly appreciate your time and understanding.` }
 ];
 
-// =====================
-// SME SARAH SPIELS
-// =====================
 const smesarahOpening = [
   { label: "No Customer Journey 1", tag: "greeting", text: `Hello, welcome to [specific market] Customer Service! I hope you are doing well. My name is [Name], and I am here to help. What can I assist you with today?` },
   { label: "No Customer Journey 2", tag: "greeting", text: `Hi there, and welcome to [specific market]! I hope you are doing well. I am [Name], and I see you are reaching out about something related to your cancellation, delivery, payment, account, or meals. I am here to help. Could you please let me know exactly what you need assistance with today?` }
@@ -683,9 +436,6 @@ const smesarahClosing = [
   { label: "Survey Unresolved", tag: "close", text: `We are really sorry we could not fully resolve your concern today, but thank you for your patience and for giving us the chance to assist you.\n\nYou may see a quick survey pop up about your experience. It only takes a few seconds to complete. The rating goes from 1 (not satisfied) to 5 (very satisfied), and your honest feedback helps us understand where we need to improve and do better next time.\n\nWe truly appreciate your time and understanding.` }
 ];
 
-// =====================
-// FACTOR DE SPIELS
-// =====================
 const factordeOpening = [
   { label: "No Context", tag: "open", text: `Welcome to Factor! My name is [Name], great to have you with us! How can I help you today?` },
   { label: "With Context", tag: "open", text: `Hello and welcome to Factor! I am [Name]. I see you are reaching out about your [subscription / delivery / payment / account / meals]. Could you tell me a little more about it so I can help you best?` }
@@ -948,10 +698,9 @@ function switchRegion(code) {
   currentRegion = code;
   const root = document.documentElement;
   
-  root.style.setProperty('--theme-bg',     `var(--${code}-bg)`);
-  root.style.setProperty('--theme-border', `var(--${code}-border)`);
-  root.style.setProperty('--theme-light',  `var(--${code}-light)`);
-  root.style.setProperty('--theme-text',   `var(--${code}-text)`);
+  // Set region class for accent color
+  document.body.className = document.body.className.replace(/region-\w+/g, '');
+  document.body.classList.add(`region-${code}`);
 
   const logoEl = document.getElementById('mainLogo');
   if (code === 'smesarah' || code === 'sahwrap') {
@@ -984,7 +733,7 @@ function switchRegion(code) {
     document.getElementById('mainSearchBar').style.display = 'none';
     document.getElementById('noResults').style.display = 'none';
     const sidebar = document.getElementById('sidebar');
-    sidebar.innerHTML = '<div class="sidebarSection">Offline Tool</div><div class="sidebarItem active">✨ KIRO Generator</div><div style="padding: 24px; font-size: 12px; color: var(--gray-text); line-height: 1.5;">This tool works offline by scanning your pasted chat for specific keywords to automatically generate KIRO notes.</div>';
+    sidebar.innerHTML = '<div class="sidebarSection">Offline Tool</div><div class="sidebarItem active">✨ KIRO Generator</div><div style="padding: 24px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">This tool works offline by scanning your pasted chat for specific keywords to automatically generate KIRO notes.</div>';
   } else {
     document.getElementById('mainSearchBar').style.display = 'flex';
     document.getElementById('searchInput').value = '';
@@ -1101,6 +850,93 @@ switchRegion('smesarah');
 // =====================
 // OFFLINE KIRO GENERATOR (KEYWORD BASED)
 // =====================
+const kiroRules = [
+  {
+    keywords: ["cancel", "stop", "close account", "unsubscribe", "didn't like", "too expensive", "afford"],
+    code: "2. Account Cancellation Customer Not Retained",
+    k: "Account Management issues",
+    i: "Customer requested account cancellation",
+    r: "Cancelled account as requested and informed customer."
+  },
+  {
+    keywords: ["refund", "charge", "money", "bill", "double charge", "invoice", "paid"],
+    code: "26. Payments-Credit/Refund",
+    k: "Refund",
+    i: "Customer querying charge and requesting refund",
+    r: "Reviewed account details and processed refund back to original payment method."
+  },
+  {
+    keywords: ["missing", "forgot", "not in box", "didn't receive", "left out", "ingredient"],
+    code: "13. Complaint-Pick & Pack",
+    k: "Missing",
+    i: "Customer reported missing items in their box",
+    r: "Added appropriate credit for missing items and reported to Pick & Pack team."
+  },
+  {
+    keywords: ["late", "delay", "where is my box", "hasn't arrived", "eta", "delivery time"],
+    code: "11. Complaint-Logistics-Early/Late",
+    k: "Late 1 Day",
+    i: "Customer checking on delayed delivery status",
+    r: "Checked tracking, informed customer of current ETA, and provided options."
+  },
+  {
+    keywords: ["sick", "ill", "food poisoning", "hospital", "vomit", "nausea", "health"],
+    code: "9. Complaint-Food Safety",
+    k: "Food Poisoning",
+    i: "Customer reported feeling unwell after eating a meal",
+    r: "Escalated to Food Safety team immediately and followed safety protocol."
+  },
+  {
+    keywords: ["damaged", "warm", "spilled", "broken", "melted", "leaking", "mould", "rotten", "spoiled", "crushed"],
+    code: "14. Complaint-Quality",
+    k: "Damage",
+    i: "Customer reported damaged or poor quality box items",
+    r: "Reported quality issue internally and provided appropriate compensation."
+  },
+  {
+    keywords: ["address", "move", "change delivery", "delivery day", "update", "new home"],
+    code: "8. Account-Update account/subscription details",
+    k: "Address",
+    i: "Customer requesting to update subscription details",
+    r: "Updated account details successfully per customer request."
+  },
+  {
+    keywords: ["password", "login", "can't access", "locked out"],
+    code: "8. Account-Update account/subscription details",
+    k: "Password Reset",
+    i: "Customer having trouble logging in",
+    r: "Sent password reset link and assisted with account access."
+  },
+  {
+    keywords: ["first box", "1st box", "trial box"],
+    code: "Account 1st Box Change/Question",
+    k: "Change Requests",
+    i: "Customer inquired about their very first delivery",
+    r: "Assisted customer with modifications to their first box."
+  },
+  {
+    keywords: ["voucher", "code", "discount", "promo", "referral", "freebie", "gift card"],
+    code: "17. Marketing-Applying Voucher/Gift Card",
+    k: "Not Applied",
+    i: "Customer querying unapplied discount code",
+    r: "Reviewed voucher terms and manually applied discount to account."
+  },
+  {
+    keywords: ["driver", "courier", "thrown", "gate", "leave safe", "rude", "doorbell"],
+    code: "10. Complaint-Logistic-Courier company",
+    k: "Driver Behaviour",
+    i: "Customer reported issue with delivery driver",
+    r: "Logged feedback against the courier and added delivery notes."
+  },
+  {
+    keywords: ["app", "website", "glitch", "error", "won't load", "blank screen"],
+    code: "15. Complaint - Website/App/Internal Tech Error",
+    k: "Website",
+    i: "Customer reporting technical issue with website/app",
+    r: "Troubleshot technical issue and escalated to tech team if necessary."
+  }
+];
+
 function generateKiro() {
   const input = document.getElementById('chatInput').value.toLowerCase();
   const out = document.getElementById('aiOutput');
@@ -1121,42 +957,18 @@ function generateKiro() {
     let matchedI = "General customer inquiry";
     let matchedR = "Assisted customer and answered questions regarding account.";
 
-    // Logic: Look for specific keywords to assign the right KIRO template
-    if (input.includes("cancel") || input.includes("stop") || input.includes("close")) {
-        matchedCode = "2. Account Cancellation Customer Not Retained";
-        matchedK = "Account Management issues";
-        matchedI = "Customer requested account cancellation";
-        matchedR = "Cancelled account as requested and informed customer.";
-    } else if (input.includes("refund") || input.includes("charge") || input.includes("money") || input.includes("bill") || input.includes("paid")) {
-        matchedCode = "26. Payments-Credit/Refund";
-        matchedK = "Refund";
-        matchedI = "Customer querying charge / requesting refund";
-        matchedR = "Reviewed account details and processed refund back to original payment method.";
-    } else if (input.includes("missing") || input.includes("forgot") || input.includes("didn't receive") || input.includes("not in box")) {
-        matchedCode = "13. Complaint-Pick & Pack";
-        matchedK = "Missing";
-        matchedI = "Customer reported missing ingredients or meal";
-        matchedR = "Added appropriate credit for missing items and reported to Pick & Pack team.";
-    } else if (input.includes("late") || input.includes("delay") || input.includes("where is my box") || input.includes("hasn't arrived")) {
-        matchedCode = "11. Complaint-Logistics-Early/Late";
-        matchedK = "Late 1 Day";
-        matchedI = "Customer checking on delayed delivery";
-        matchedR = "Checked tracking, informed customer of delay, and provided options.";
-    } else if (input.includes("sick") || input.includes("ill") || input.includes("food poisoning") || input.includes("hospital") || input.includes("doctor")) {
-        matchedCode = "9. Complaint-Food Safety";
-        matchedK = "Food Poisoning";
-        matchedI = "Customer reported feeling unwell after eating a meal";
-        matchedR = "Escalated to Food Safety team immediately and followed safety protocol.";
-    } else if (input.includes("damaged") || input.includes("warm") || input.includes("spilled") || input.includes("broken") || input.includes("open")) {
-        matchedCode = "14. Complaint-Quality";
-        matchedK = "Damage";
-        matchedI = "Customer reported damaged or warm box items";
-        matchedR = "Reported quality issue internally and provided appropriate compensation.";
-    } else if (input.includes("change address") || input.includes("delivery day") || input.includes("update")) {
-        matchedCode = "8. Account-Update account/subscription details";
-        matchedK = "Update";
-        matchedI = "Customer requesting to update subscription details";
-        matchedR = "Updated account details successfully per customer request.";
+    // Loop through rules to find a match
+    for (let i = 0; i < kiroRules.length; i++) {
+      let rule = kiroRules[i];
+      let foundMatch = rule.keywords.some(keyword => input.includes(keyword));
+      
+      if (foundMatch) {
+        matchedCode = rule.code;
+        matchedK = rule.k;
+        matchedI = rule.i;
+        matchedR = rule.r;
+        break; // Stop at the first matched rule
+      }
     }
 
     // Format the final KIRO note
@@ -1175,12 +987,19 @@ function copyAiText() {
   navigator.clipboard.writeText(document.getElementById('aiOutput').innerText);
   const btn = document.getElementById('copyAiBtn');
   btn.innerText = "Copied! ✨";
-  btn.style.background = "#059669";
+  
+  // Briefly show success state
+  const originalBg = btn.style.background;
+  const originalColor = btn.style.color;
+  btn.style.background = "#10b981";
   btn.style.color = "#ffffff";
+  btn.style.borderColor = "#10b981";
+  
   setTimeout(() => { 
     btn.innerText = "Copy Notes"; 
-    btn.style.background = "var(--white)";
-    btn.style.color = "var(--sahwrap-border)";
+    btn.style.background = originalBg;
+    btn.style.color = originalColor;
+    btn.style.borderColor = "var(--accent)";
   }, 2000);
 }
 
