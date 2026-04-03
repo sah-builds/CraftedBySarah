@@ -833,92 +833,88 @@ renderPanels();
 switchRegion('smesarah');
 
 // =====================
-// OFFLINE KIRO GENERATOR (KEYWORD BASED)
+// SMART OFFLINE KIRO GENERATOR
 // =====================
-const kiroRules = [
+const smartRules = [
   {
-    keywords: ["cancel", "stop", "close account", "unsubscribe", "didn't like", "too expensive", "afford"],
-    code: "2. Account Cancellation Customer Not Retained",
-    k: "Account Management issues",
-    i: "Customer requested account cancellation",
-    r: "Cancelled account as requested and informed customer."
+    anyOf: ["food poisoning", "sick", "ill", "hospital", "vomit", "throw up", "stomach", "nausea"],
+    allOf: [], noneOf: [],
+    code: "9. Complaint-Food Safety", k: "Food Poisoning", i: "Customer reported feeling unwell after eating meal", r: "Escalated to Food Safety team immediately and followed protocol."
   },
   {
-    keywords: ["refund", "charge", "money", "bill", "double charge", "invoice", "paid"],
-    code: "26. Payments-Credit/Refund",
-    k: "Refund",
-    i: "Customer querying charge and requesting refund",
-    r: "Reviewed account details and processed refund back to original payment method."
+    anyOf: ["missing", "forgot", "didn't get", "not in box"],
+    allOf: ["recipe", "card"], noneOf: [],
+    code: "13. Complaint-Pick & Pack", k: "Missing Recipe Card", i: "Customer reported missing recipe instructions", r: "Apologized and provided link to digital recipe card."
   },
   {
-    keywords: ["missing", "forgot", "not in box", "didn't receive", "left out", "ingredient"],
-    code: "13. Complaint-Pick & Pack",
-    k: "Missing",
-    i: "Customer reported missing items in their box",
-    r: "Added appropriate credit for missing items and reported to Pick & Pack team."
+    anyOf: ["missing", "left out", "forgot", "didn't get", "not in box"],
+    allOf: [], noneOf: ["box", "delivery", "recipe"], // Excludes missing entire boxes
+    code: "13. Complaint-Pick & Pack", k: "Missing", i: "Customer reported missing ingredients or meal", r: "Added appropriate credit for missing items and reported to Pick & Pack."
   },
   {
-    keywords: ["late", "delay", "where is my box", "hasn't arrived", "eta", "delivery time"],
-    code: "11. Complaint-Logistics-Early/Late",
-    k: "Late 1 Day",
-    i: "Customer checking on delayed delivery status",
-    r: "Checked tracking, informed customer of current ETA, and provided options."
+    anyOf: ["double charge", "charged twice", "two charges", "billed twice"],
+    allOf: [], noneOf: [],
+    code: "25. Payments-Charge breakdown", k: "Double Charge", i: "Customer queried apparent double charge", r: "Investigated billing and clarified charges/processed refund."
   },
   {
-    keywords: ["sick", "ill", "food poisoning", "hospital", "vomit", "nausea", "health"],
-    code: "9. Complaint-Food Safety",
-    k: "Food Poisoning",
-    i: "Customer reported feeling unwell after eating a meal",
-    r: "Escalated to Food Safety team immediately and followed safety protocol."
+    anyOf: ["refund", "charge", "money", "bill", "invoice", "paid"],
+    allOf: [], noneOf: ["double", "twice"],
+    code: "26. Payments-Credit/Refund", k: "Refund", i: "Customer querying charge and requesting refund", r: "Reviewed account details and processed refund back to original payment method."
   },
   {
-    keywords: ["damaged", "warm", "spilled", "broken", "melted", "leaking", "mould", "rotten", "spoiled", "crushed"],
-    code: "14. Complaint-Quality",
-    k: "Damage",
-    i: "Customer reported damaged or poor quality box items",
-    r: "Reported quality issue internally and provided appropriate compensation."
+    anyOf: ["cancel", "stop", "close account", "delete account"],
+    allOf: [], noneOf: ["first box", "1st box", "trial"],
+    code: "2. Account Cancellation Customer Not Retained", k: "Account Management issues", i: "Customer requested account cancellation", r: "Cancelled account as requested and sent confirmation."
   },
   {
-    keywords: ["address", "move", "change delivery", "delivery day", "update", "new home"],
-    code: "8. Account-Update account/subscription details",
-    k: "Address",
-    i: "Customer requesting to update subscription details",
-    r: "Updated account details successfully per customer request."
+    anyOf: ["driver", "courier", "delivery man", "delivery guy"],
+    allOf: ["rude", "thrown", "damaged property", "ignore", "gate", "doorbell", "leave safe"], noneOf: [],
+    code: "10. Complaint-Logistic-Courier company", k: "Driver Behaviour", i: "Customer reported unprofessional courier behavior", r: "Logged feedback against the courier for investigation and added notes."
   },
   {
-    keywords: ["password", "login", "can't access", "locked out"],
-    code: "8. Account-Update account/subscription details",
-    k: "Password Reset",
-    i: "Customer having trouble logging in",
-    r: "Sent password reset link and assisted with account access."
+    anyOf: ["never arrived", "didn't arrive", "no delivery", "missing box"],
+    allOf: [], noneOf: ["ingredient", "meal", "recipe"],
+    code: "12. Complaint-Logistics-Failed delivery", k: "No Delivery", i: "Customer reported delivery never arrived", r: "Investigated tracking, confirmed failed delivery, and issued refund/credit."
   },
   {
-    keywords: ["first box", "1st box", "trial box"],
-    code: "Account 1st Box Change/Question",
-    k: "Change Requests",
-    i: "Customer inquired about their very first delivery",
-    r: "Assisted customer with modifications to their first box."
+    anyOf: ["late", "delay", "where is my box", "eta", "time slot"],
+    allOf: [], noneOf: ["never arrived", "didn't arrive", "no delivery"],
+    code: "11. Complaint-Logistics-Early/Late", k: "Late 1 Day", i: "Customer checking on delayed delivery status", r: "Checked tracking, informed customer of current ETA, and provided options."
   },
   {
-    keywords: ["voucher", "code", "discount", "promo", "referral", "freebie", "gift card"],
-    code: "17. Marketing-Applying Voucher/Gift Card",
-    k: "Not Applied",
-    i: "Customer querying unapplied discount code",
-    r: "Reviewed voucher terms and manually applied discount to account."
+    anyOf: ["damaged", "crushed", "squashed", "broken", "mould", "rotten", "spoiled"],
+    allOf: [], noneOf: ["warm", "hot", "melted"],
+    code: "14. Complaint-Quality", k: "Damage", i: "Customer reported damaged box items", r: "Reported quality issue internally and provided appropriate compensation."
   },
   {
-    keywords: ["driver", "courier", "thrown", "gate", "leave safe", "rude", "doorbell"],
-    code: "10. Complaint-Logistic-Courier company",
-    k: "Driver Behaviour",
-    i: "Customer reported issue with delivery driver",
-    r: "Logged feedback against the courier and added delivery notes."
+    anyOf: ["warm", "melted", "hot", "not cold", "leaking", "spilled", "burst"],
+    allOf: [], noneOf: [],
+    code: "14. Complaint-Quality", k: "Warm", i: "Customer reported box arrived warm or leaking", r: "Reported quality issue internally and provided appropriate compensation."
   },
   {
-    keywords: ["app", "website", "glitch", "error", "won't load", "blank screen"],
-    code: "15. Complaint - Website/App/Internal Tech Error",
-    k: "Website",
-    i: "Customer reporting technical issue with website/app",
-    r: "Troubleshot technical issue and escalated to tech team if necessary."
+    anyOf: ["address", "move", "change delivery", "delivery day", "update", "new home"],
+    allOf: [], noneOf: [],
+    code: "8. Account-Update account/subscription details", k: "Address", i: "Customer requesting to update subscription details", r: "Updated account details successfully per customer request."
+  },
+  {
+    anyOf: ["password", "login", "can't access", "locked out"],
+    allOf: [], noneOf: [],
+    code: "8. Account-Update account/subscription details", k: "Password Reset", i: "Customer having trouble logging in", r: "Sent password reset link and assisted with account access."
+  },
+  {
+    anyOf: ["first box", "1st box", "trial box"],
+    allOf: [], noneOf: [],
+    code: "Account 1st Box Change/Question", k: "Change Requests", i: "Customer inquired about their very first delivery", r: "Assisted customer with modifications to their first box."
+  },
+  {
+    anyOf: ["voucher", "code", "discount", "promo", "referral", "freebie", "gift card"],
+    allOf: [], noneOf: [],
+    code: "17. Marketing-Applying Voucher/Gift Card", k: "Not Applied", i: "Customer querying unapplied discount code", r: "Reviewed voucher terms and manually applied discount to account."
+  },
+  {
+    anyOf: ["app", "website", "glitch", "error", "won't load", "blank screen", "bug"],
+    allOf: [], noneOf: [],
+    code: "15. Complaint - Website/App/Internal Tech Error", k: "Website", i: "Customer reporting technical issue with website/app", r: "Troubleshot technical issue and escalated to tech team if necessary."
   }
 ];
 
@@ -933,39 +929,37 @@ function generateKiro() {
   document.getElementById('aiLoading').style.display = 'block';
   document.getElementById('kiroBtn').disabled = true;
   
-  // Simulate a short delay so the tool feels like it is processing the text
   setTimeout(() => {
-    
-    // Default fallback if no keywords are matched
+    // Default fallback if no rules match
     let matchedCode = "23. Other-Non-customer query";
     let matchedK = "Passed On Details";
     let matchedI = "General customer inquiry";
     let matchedR = "Assisted customer and answered questions regarding account.";
 
-    // Loop through rules to find a match
-    for (let i = 0; i < kiroRules.length; i++) {
-      let rule = kiroRules[i];
-      let foundMatch = rule.keywords.some(keyword => input.includes(keyword));
-      
-      if (foundMatch) {
+    // Run the text through the Smart Rules Engine
+    for (let rule of smartRules) {
+      let hasAny = rule.anyOf.length === 0 || rule.anyOf.some(word => input.includes(word));
+      let hasAll = rule.allOf.length === 0 || rule.allOf.every(word => input.includes(word));
+      let hasNone = rule.noneOf.length === 0 || rule.noneOf.every(word => !input.includes(word));
+
+      if (hasAny && hasAll && hasNone) {
         matchedCode = rule.code;
         matchedK = rule.k;
         matchedI = rule.i;
         matchedR = rule.r;
-        break; // Stop at the first matched rule
+        break; // Stop at the first valid match!
       }
     }
 
-    // Format the final KIRO note
     const resultText = `Wrap Code: ${matchedCode}\n\nK: ${matchedK}\nI: ${matchedI}\nR: ${matchedR}\nO: n/a`;
 
     document.getElementById('aiLoading').style.display = 'none';
     document.getElementById('kiroBtn').disabled = false;
     out.innerText = resultText;
     out.style.display = 'block';
-    document.getElementById('copyAiBtn').style.display = 'block';
+    document.getElementById('copyAiBtn').style.display = 'flex';
     
-  }, 800); // 0.8 second delay
+  }, 800); 
 }
 
 function copyAiText() {
@@ -973,7 +967,6 @@ function copyAiText() {
   const btn = document.getElementById('copyAiBtn');
   btn.innerText = "Copied! ✨";
   
-  // Briefly show success state
   const originalBg = btn.style.background;
   const originalColor = btn.style.color;
   btn.style.background = "#10b981";
